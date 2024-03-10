@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Create product list with CSS3</title>
+<style type="text/css">
+.StudentCode {display: none;}
+.Member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #aaa;
+}
+.FullName  {font-weight: bold;}
+.StudentCode {font-style: italic;}
+.StudentCode:before {content: " - ";}
+.Member {
+    text-align: center;
+    width: 150px;
+    margin: 10px 20px;
+    float: left;
+    cursor: pointer;
+}
+.Member:hover .StudentCode {display: block;}
+</style>
+</head>
+<body>
+    <div>
+        <div class="Member">
+            <img src="https://cdn.tgdd.vn/GameApp/1339953/AnhnenDoraemon-Nobita48-800x1422.jpg" width="200" height="200" />
+            <div class="StudentDetails">
+                <span class="FullName">Nguyen Duc Nam</span>
+                <span class="StudentCode">23012312</span>
+            </div>
+        </div>
+        <div class="Member">
+            <img src="https://cdn.myanimelist.net/images/characters/9/496983.jpg" width="200" height="200" />
+            <div class="StudentDetails">
+                <span class="FullName">Nguyen Phuc Duc</span>
+                <span class="StudentCode">23070112</span>
+            </div>
+        </div>
+        <div class="Member">
+            <img src="https://yt3.ggpht.com/a/AATXAJzglKvCO_bolmmA8xfiq2sVejjG_KjJZDGSvQ=s900-c-k-c0xffffffff-no-rj-mo" width="200" height="200" />
+            <div class="StudentDetails">
+                <span class="FullName">Nguyen Minh Cuong</span>
+                <span class="StudentCode">23079112</span>
+            </div>
+        </div>
+    </div>
+</body>
