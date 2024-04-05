@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Tool</title>
+<style>
+  #searchInput {
+    padding: 8px;
+    width: 300px;
+    font-size: 16px;
+  }
+  #searchResults {
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<input type="text" id="searchInput" onkeypress="handleKeyPress(event)" placeholder="Search...">
+<div id="searchResults"></div>
+
+<script>
+function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+    var searchInputValue = document.getElementById('searchInput').value;
+    // Replace 'https://example.com/' with the URL you want to redirect to
+    window.location.href = 'https://example.com/?q=' + encodeURIComponent(searchInputValue);
+  }
+}
+</script>
+
+<!-- Example list to search through -->
+<ul id="myList">
+    <li><a href="#">Item 1</a></li>
+    <li><a href="#">Item 2</a></li>
+    <li><a href="#">Item 3</a></li>
+    <li><a href="#">Another Item</a></li>
+    <li><a href="#">Last Item</a></li>
+  </ul>
+
+</body>
+</html>
