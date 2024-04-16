@@ -1,43 +1,827 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Search Tool</title>
+<html id="mainHtml" lang="vi" xmlns="http://www.w3.org/1999/xhtml">
+
+<meta name="news_keywords" content="Tin mới nhất - Báo Điện Tử Online" />
+<meta name="description" content="" />
+<meta id="metaRobots" name="robots" content="max-image-preview:large,index,follow,all" /><script type="text/javascript">var _ADM_Channel = '%2Ftin-moi-nhat%2F';</script>
+<script type="text/javascript">
+var arfAsync = arfAsync || [];
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+
+var is_iPadScreen = navigator.userAgent.match(/iPad/i);
+var widthScreen;
+(runinit = window.runinit || []).push(function () {
+    widthScreen = $(window).width();
+});
+</script><script>window.dataLayer = window.dataLayer || [];dataLayer.push({'pageCategory': '/tin-moi-nhat/'});</script><script>window.dataLayer = window.dataLayer || [];dataLayer.push({  'articleId': '0',  'articleTitle': '',  'articleCategory': 'Tin m\u1edbi nh\u1ea5t',  'articleAlowAds': '1',  'articleSponsor': '0',  'articleType': '',  'articleTags': '',  'articlePublishDate': '',  'articleThumbnail': '',  'articleShortUrl': '',  'articleFullUrl': '',  'articleLayout': '',  'pageType': 'LatestNews',  'articleParentCategory': '',  'articleContentType': ''});</script>
+
+<meta name="author" content="TUOI TRE ONLINE" />
+<meta name="copyright" content="Copyright © 2024 by TUOITRE.VN" />
+<meta name="RATING" content="GENERAL" />
+<meta name="GENERATOR" content="TUOI TRE ONLINE" />
+
+
+
+
+
 <style>
-  #searchInput {
-    padding: 8px;
-    width: 300px;
-    font-size: 16px;
-  }
-  #searchResults {
-    margin-top: 10px;
-  }
+@font-face { font-family: 'Roboto'; font-style: normal;font-display:swap; font-weight: 400; src: url('https://static.mediacdn.vn/fonts/Roboto-Regular.woff2') format('woff2'), url('https://static.mediacdn.vn/fonts/Roboto-Regular.woff') format('woff'), url('https://static.mediacdn.vn/fonts/Roboto-Regular.ttf') format('truetype'), url('https://static.mediacdn.vn/fonts/Roboto-Regular.eot') format('embedded-opentype'); }
+@font-face { font-family: 'Roboto'; font-style: normal;font-display:swap; font-weight: 500; src: url('https://static.mediacdn.vn/fonts/Roboto-Medium.woff2') format('woff2'), url('https://static.mediacdn.vn/fonts/Roboto-Medium.woff') format('woff'), url('https://static.mediacdn.vn/fonts/Roboto-Medium.ttf') format('truetype'), url('https://static.mediacdn.vn/fonts/Roboto-Medium.eot') format('embedded-opentype'); }
+@font-face { font-family: 'Roboto'; font-style: normal;font-display:swap; font-weight: 600; src: url('https://static.mediacdn.vn/fonts/RobotoCondensed-Bold.woff2') format('woff2'), url('https://static.mediacdn.vn/fonts/RobotoCondensed-Bold.woff') format('woff'), url('https://static.mediacdn.vn/fonts/RobotoCondensed-Bold.ttf') format('truetype'), url('https://static.mediacdn.vn/fonts/RobotoCondensed-Bold.eot') format('embedded-opentype'); }
+@font-face { font-family: 'Roboto'; font-style: normal;font-display:swap; font-weight: 700; src: url('https://static.mediacdn.vn/fonts/Roboto-Bold.woff2') format('woff2'), url('https://static.mediacdn.vn/fonts/Roboto-Bold.woff') format('woff'), url('https://static.mediacdn.vn/fonts/Roboto-Bold.ttf') format('truetype'), url('https://static.mediacdn.vn/fonts/Roboto-Bold.eot') format('embedded-opentype'); }
+@font-face { font-family: 'Roboto'; font-style: normal;font-display:swap; font-weight: bold; src: url('https://static.mediacdn.vn/fonts/Roboto-Bold.woff2') format('woff2'), url('https://static.mediacdn.vn/fonts/Roboto-Bold.woff') format('woff'), url('https://static.mediacdn.vn/fonts/Roboto-Bold.ttf') format('truetype'), url('https://static.mediacdn.vn/fonts/Roboto-Bold.eot') format('embedded-opentype'); }
+@font-face { font-family: 'Merriweather'; font-style: normal;font-display:swap; font-display: optional; font-weight: bold; src: url('https://static.mediacdn.vn/fonts/Merriweather-Bold.woff2') format('woff2'), url('https://static.mediacdn.vn/fonts/Merriweather-Bold.woff') format('woff'), url('https://static.mediacdn.vn/fonts/Merriweather-Bold.ttf') format('truetype'),url('https://static.mediacdn.vn/fonts/Merriweather-Bold.eot') format('embedded-opentype'); }
 </style>
-</head>
-<body>
 
-<input type="text" id="searchInput" onkeypress="handleKeyPress(event)" placeholder="Search...">
-<div id="searchResults"></div>
+<script type="text/javascript">
+function getMeta(t) { let e = document.getElementsByTagName("meta"); for (let n = 0; n < e.length; n++)if (e[n].getAttribute("name") === t) return e[n].getAttribute("content"); return "" }
 
+var hdUserAgent = getMeta("uc:useragent");
+var isNotAllowAds = hdUserAgent.includes("not-allow-ads");
+
+var appSettings = pageSettings = {
+    domain: "https://tuoitre.vn",
+    apiDomain: "https://s5.tuoitre.vn",
+    ajaxDomain: "https://s5.tuoitre.vn",
+    idDomain: "https://id.tuoitre.vn",
+    urlJsId: "https://static-tuoitre.tuoitre.vn/tuoitre/web_js/corecommentv2.plugin.13112023v1.min.js",
+   
+    
+    sharefbApiDomain: "https://sharefb.cnnd.vn",
+    videoplayer: "https://vcplayer.mediacdn.vn",
+    imageStorage:"https://cdn.tuoitre.vn",
+    videoImageDomain: "http://video-thumbs.tuoitre.vn",
+    domain_TVO: "https://tuoitre.vn",
+    apiUtils: "https://utils3.cnnd.vn",
+    isLoginv2: 2,
+    SSOapiurl: 'https://sso.tuoitre.vn',
+    allowAds: true && !isNotAllowAds,
+    playerSecureToken: "L3NlY3VyZS92ZXJpZnkveHZxcmNhZGhlYmZpMHY1dm5zM2Ywd3d3a3Y2MDdkMDgvMTAwMjI1L2V5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp5WldZaU9pSWlMQ0poY0hCclpYa2lPaUo0ZG5GeVkyRmthR1ZpWm1rd2RqVjJibk16WmpCM2QzZHJkall3TjJRd09DSXNJbkJzWVhsbGNpSTZJakV3TURJeU5TSXNJbWxuYm05eVpVVjRjR2x5WVhScGIyNGlPblJ5ZFdVc0ltbGhkQ0k2TVRVek9UVTNNVEE1TVN3aVpYaHdJam94TlRNNU5UY3hNakV4ZlEuVVZUWUxLNkROcjF1TG9vMDYzNVJ2TXNpeU1wUFJvYVJCa0tva3VhWC03OA=="
+    //playerSecureToken: "L3NlY3VyZS92ZXJpZnkveHZxcmNhZGhlYmZpMHY1dm5zM2Ywd3d3a3Y2MDdkMDgvMTAwMjI4L2V5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp5WldZaU9pSWlMQ0poY0hCclpYa2lPaUo0ZG5GeVkyRmthR1ZpWm1rd2RqVjJibk16WmpCM2QzZHJkall3TjJRd09DSXNJbkJzWVhsbGNpSTZJakV3TURJeU9DSXNJbWxuYm05eVpVVjRjR2x5WVhScGIyNGlPblJ5ZFdVc0ltbGhkQ0k2TVRZNE16RTVOREV3TVN3aVpYaHdJam94Tmpnek1UazBNakl4ZlEuUzc2S2w1NmlKRlJXSkUxanlMbDJvcFZHSFdoMFcxeEswbmdIbnNXTkl5dw"
+    
+    
+};
+
+</script>
+
+    <script type="text/javascript">
+        function getCookie(e) { if (document.cookie.length > 0) { var t = document.cookie.indexOf(e + "="); if (-1 != t) { t = t + e.length + 1; var s = document.cookie.indexOf(";", t); return -1 == s && (s = document.cookie.length), unescape(document.cookie.substring(t, s)) } } return "" } function loadCss(e) { var t = document.getElementsByTagName("head")[0], s = document.createElement("link"); s.rel = "stylesheet", s.type = "text/css", s.href = e, s.media = "all", t.appendChild(s) } function loadJsAsync(e, t, s) { var o = document.createElement("script"); if (o.type = "text/javascript", o.async = !0, "function" == typeof t && (o.onreadystatechange = o.onload = function () { t() }), o.src = e, void 0 !== s && o.setAttribute("onerror", s), o) { for (var a = document.getElementsByTagName("script"), r = !1, n = 0; n < a.length; n++)a[n].src == e && (r = !0); !r && document.getElementsByTagName("head")[0].appendChild(o) } } function loadJsDefer(e, t, s) { var o = document.createElement("script"); if (o.type = "text/javascript", o.defer = !0, "function" == typeof t && (o.onreadystatechange = o.onload = function () { t() }), o.src = e, void 0 !== s && o.setAttribute("onerror", s), o) { for (var a = document.getElementsByTagName("script"), r = !1, n = 0; n < a.length; n++)a[n].src == e && (r = !0); !r && document.getElementsByTagName("head")[0].appendChild(o) } } function adsCore() { pageSettings.allowAds && (loadCss("https://quangcao.tuoitre.vn/static/js/cms_ads.css"), loadJsDefer("https://quangcao.tuoitre.vn/static/js/cms_ads.js"), loadJsAsync("https://static.amcdn.vn/tka/cdn.js"), loadJsDefer("https://media1.admicro.vn/cms/Arf.min.js", "", callbackEr = "window.arferrorload = true;")) } var ttostartloadads = getCookie("_ck_user"); "true" != ttostartloadads && pageSettings.allowAds && adsCore(); var ttocheckuserstar = getCookie("_ck_isTTSao"); void 0 !== ttocheckuserstar && null != ttocheckuserstar && "true" == ttocheckuserstar ? dataLayer.push({ isTTSao: "1" }) : dataLayer.push({ isTTSao: "0" }); var ttocheckuserlogin = getCookie("_ck_isLogin"); void 0 !== ttocheckuserlogin && null != ttocheckuserlogin && "true" == ttocheckuserlogin ? dataLayer.push({ isLogin: "1" }) : dataLayer.push({ isLogin: "0" });
+        function checkRunInitScroll() { if ("undefined" != typeof runinitscroll && runinitscroll.length >= 1) { runinitscroll[0](); for (var e = runinitscroll.length, t = [], n = 1; n < e; n++)t.push(runinitscroll[n]); runinitscroll = t } window.setTimeout(function () { checkRunInitScroll() }, 1) } setTimeout(function () { let e = !1, t = appSettings.allowAds ? 1 : 3e3; function n() { try { let o; e || (e = !0, document.removeEventListener("scroll", n), (o = document.createElement("script")).async = !0, o.setAttribute("data-ad-client", ""), document.head.appendChild(o), o.src = "", document.removeEventListener("mousemove", n), document.removeEventListener("mousedown", n), document.removeEventListener("touchstart", n)), setTimeout(function () { checkRunInitScroll() }, t) } catch (i) { console.log("init --" + i) } } document.addEventListener("scroll", n, { passive: !0 }), document.addEventListener("mousemove", n), document.addEventListener("mousedown", n), document.addEventListener("touchstart", n, { passive: !0 }), document.addEventListener("load", function () { document.body.clientHeight != document.documentElement.clientHeight && 0 == document.documentElement.scrollTop && 0 == document.body.scrollTop || n() }) }, 1);
+    </script>
+    
+
+
+
+<!-- adm tracking -->
+<script defer type="text/javascript" src="//media1.admicro.vn/core/adm_tracking.js"></script>
+<script type="text/javascript">
+if (appSettings.allowAds) {
+    if (window.location.host == "tuoitre.vn" || window.location.host == "b1.tuoitre.vn" || window.location.host == "b2.tuoitre.vn") {
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KG7C9D4');
+    }
+}
+</script>
+<!-- Google Analytics -->
 <script>
-function handleKeyPress(event) {
-  if (event.key === 'Enter') {
-    var searchInputValue = document.getElementById('searchInput').value;
-    // Replace 'https://example.com/' with the URL you want to redirect to
-    window.location.href = 'https://example.com/?q=' + encodeURIComponent(searchInputValue);
-  }
+if (appSettings.allowAds) {
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KFJP3N');
 }
 </script>
 
-<!-- Example list to search through -->
-<ul id="myList">
-    <li><a href="#">Item 1</a></li>
-    <li><a href="#">Item 2</a></li>
-    <li><a href="#">Item 3</a></li>
-    <li><a href="#">Another Item</a></li>
-    <li><a href="#">Last Item</a></li>
-  </ul>
 
+<meta name="google-site-verification" content="y8PMKPH-UzpVdjHXzQjJ4oUEPfqLSWZl_EyOz5P02vc" />
+    <!-- Open Graph data -->
+    
+    <!--end Open Graph data -->
+    <meta property="fb:app_id" content="769128874330419" /><meta name="distribution" content="Global" /><meta property="fb:pages" content="214610578564918" /><meta property="fb:pages" content="131539760743" /><meta name="msvalidate.01" content="E52E0AECFFC89B1959FC75D368D4B11E" /><link rel="shortcut&#32;icon" href="https://statictuoitre.mediacdn.vn/web_images/favicon.ico" type="image/x-icon" /><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /><meta http-equiv="Content-Language" content="vi" /><meta name="Language" content="vi" /><meta http-equiv="REFRESH" content="1800" /><meta name="REVISIT-AFTER" content="1&#32;DAYS" />
+
+
+
+
+<style>:root{--swiper-theme-color:#007aff}.swiper{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;list-style:none;padding:0;z-index:1}.swiper-wrapper{position:relative;width:100%;height:100%;z-index:1;display:flex;transition-property:transform;box-sizing:content-box}.swiper-android .swiper-slide,.swiper-wrapper{transform:translate3d(0,0,0)}.swiper-slide{flex-shrink:0;width:100%;height:100%;position:relative;transition-property:transform}:root{--swiper-navigation-size:44px}.swiper .swiper-notification{position:absolute;left:0;top:0;pointer-events:none;opacity:0;z-index:-1000}.wrapPopup,#overlay_comment{height:auto;width:100%;left:0;min-height:100%;position:fixed;right:0;top:0;z-index:999999;background:rgba(34,34,34,.6);display:none}[data-atc="atc-nonstar"]{display:none}[data-atc="atc-star"]{display:none}[data-atc="atc-startemp"]{display:none}.loginform .h_login{position:relative;display:none;text-align:center;margin-left:15px}.header__action .btnstarregister{background:#5580df;border-radius:4px;font-size:13px;color:#fff;padding:4px 16px;margin-left:8px;font-weight:500}.modal__bg{background:#000 !important;z-index:99998 !important}body{font-family:'Roboto';font-size:14px;line-height:20px;color:#333;background-color:#fff;-webkit-animation-duration:.1s;-webkit-animation-name:fontfix;-webkit-animation-iteration-count:1;-webkit-animation-timing-function:linear;-webkit-animation-delay:.1s;-webkit-tap-highlight-color:transparent;margin:0;min-width:1310px}.container{width:1310px !important;margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px}.main{padding-top:24px}*{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:geometricPrecision}*,::after,::before{box-sizing:border-box}ul{padding:0;margin:0;list-style:none}a{text-decoration:none;color:#666;outline:none}p{margin:0}h1,h2,h3{margin:0}img{width:100%;max-width:100%;display:block;image-rendering:-webkit-optimize-contrast;color:transparent}input,textarea,select,a{outline:none}.mb-16{margin-bottom:16px}.clearfix{clear:both}.img-resize{display:block;position:relative;height:max-content}.img-resize:before{padding-bottom:62.5%;content:"";display:block}.img-resize img{position:absolute;top:0;left:0;width:100%;height:100%;bottom:0;margin:auto;background-size:cover;background-position:center}.icon{display:inline-flex}.header{min-height:82px;z-index:99}.header__middle{box-shadow:0 4px 20px rgba(0,0,0,.05);background:#fff}.header__top{background:linear-gradient(90.13deg,#e30e16 18.76%,#c90009 96.9%)}.header__top-flex{display:flex;justify-content:space-between;align-items:center;height:48px}.header__top-right{display:flex;align-items:center}.header__cate ul{display:flex;align-items:center}.header__cate ul li:last-child .header__clink{border-right:0}.header__action{display:flex;align-items:center;margin-left:12px}.header__action .box-search{border-radius:4px;height:28px;display:flex;align-items:center;font-size:13px;line-height:18px;color:#ff7772;width:29px;overflow:hidden;transition:all .3s;box-sizing:content-box}.header__action .box-search .input-search{border:0;background:transparent;font-size:13px;line-height:18px;color:#fff;width:0;transition:all .3s}.header__action .box-search .input-search::-webkit-input-placeholder{color:#ff7772}.header__action .box-search .input-search::placeholder{color:#ff7772}.header__user{margin-left:16px;display:flex}.header__clink{display:flex;padding:0 8px;border-right:1px solid #ed1c24;font-weight:500;font-size:14px;line-height:20px;color:#fff}.header__clink .icon{margin-right:4px}.header__search{display:flex}.header__nav-flex .menu-nav{display:flex;align-items:center}.header__nav-flex .menu-nav li:last-child .nav-link{margin-right:0}.header__nav-flex .menu-nav li .nav-link{padding:8px 0;font-weight:500;font-size:12px;line-height:18px;text-transform:uppercase;color:#222;display:flex;align-items:center;margin-right:20.4px;white-space:nowrap}.footer{padding:40px 0;background:#fafafc}.footer__nav{padding-bottom:24px;border-bottom:2px solid #ed1c24;margin-bottom:24px}.footer__nav .menu-nav{display:flex}.footer__nav .menu-nav li:last-child .nav-link{margin-right:0}.footer__nav .menu-nav li .nav-link{font-weight:500;font-size:12px;line-height:18px;text-transform:uppercase;color:#222;margin-right:17.35px;display:flex}.footer__middle-flex{display:flex;border-bottom:1px dashed #e2e2e2;padding-bottom:24px;margin-bottom:24px}.footer__logo{width:112px;margin-right:61px}.footer__logo .logo{display:block;margin-bottom:10px}.footer__logo .list-social{display:flex;align-items:center}.footer__logo .list-social .icon{margin-right:8px;display:inline-flex}.footer__logo .list-social .icon:last-child{margin-right:0}.footer__m-content{display:flex}.footer__m-content .box{width:329px;margin-right:61px;font-size:13px;line-height:18px;color:#666}.footer__m-content .box:last-child{width:378px}.footer__m-content .box .list a{font-weight:500;padding:0 8px;border-right:1px solid #ddd}.footer__m-content .box .list a:first-child{padding-left:0}.footer__m-content .box .list a:last-child{padding-right:0;border-right:0}.footer__m-right{width:277px}.footer__m-right .title{font-size:16px;line-height:22px;color:#222;font-weight:700;margin-bottom:8px}.footer__m-right p.note{font-size:14px;line-height:18px;color:#666;margin-bottom:8px}.footer__m-right .form-note{border-radius:4px;overflow:hidden;display:flex}.footer__m-right .form-note .submit{width:120px;height:34px;background:#043778;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:20px;color:#fff}.footer__coppy{font-size:13px;line-height:18px;color:#8f8f8f}.modal__bg{position:fixed;background:#222;opacity:.6;width:100%;height:100%;top:0;left:0;z-index:98;visibility:hidden;opacity:0;transition:visibility 0s,opacity .3s linear;background:#fff}#back-to-top{display:none}.box-first .box-category[data-layout="3"] .box-category-middle .box-category-item:first-child{padding-top:0;border-top:0}.section__muasam{margin-bottom:60px}.section__muasam .content-amuasam{border-top:1px solid #f2f2f2;padding-top:32px}.box-category .box-category-link-with-avatar{position:relative}.box-category .box-category-link-with-avatar img{width:100%;height:100%;object-fit:cover}.box-category .box-content-title{display:flex}.box-category .box-content-title .box-title-text{flex:1}.box-category .box-category-link-with-avatar{position:relative}.box-category .box-category-link-with-avatar[data-newstype='1']:after{content:'';width:32px;height:32px;background:url("https://static-tuoitre.tuoitre.vn/tuoitre/web_images/i-image.png");display:inline-flex;position:absolute;left:8px;bottom:8px;background-size:100% 100%}.box-category .box-category-link-with-avatar[data-newstype='2']:after{content:'';width:32px;height:32px;background:url("https://static-tuoitre.tuoitre.vn/tuoitre/web_images/i-video.png");display:inline-flex;position:absolute;left:8px;bottom:8px;background-size:100% 100%}.box-category .box-category-link-title{position:relative}.box-category .box-category-link-title[data-newstype='7'],.box-category .box-category-link-title[data-type='10']{position:relative}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-first{padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid #f2f2f2;display:flex}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-first .box-category-link-with-avatar{width:456px;margin-right:16px}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-first .box-category-content{width:calc(100% - 472px)}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-first .box-category-content .box-content-title{display:flex;margin-bottom:24px}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-first .box-category-content .box-content-title .box-title-text{flex:1}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-first .box-category-content .box-content-title .box-title-text .box-category-link-title{font-size:22px;line-height:28px;color:#222;font-weight:700;display:block}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-first .box-category-content .box-category-sapo{font-weight:400;font-size:16px;line-height:22px;color:#565656;display:block;overflow:hidden;max-height:110px}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-related{display:flex}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-related .box-category-item{width:calc(33.33% - 16px);margin-right:24px}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-related .box-category-item:last-child{margin-right:0}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-related .box-category-item .box-category-link-with-avatar{margin-bottom:8px}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-related .box-category-item .box-content-title{display:flex}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-related .box-category-item .box-content-title .box-title-text{flex:1}.box-category[data-layout="2"] .box-category-middle .box-category-item-main .item-related .box-category-item .box-content-title .box-title-text .box-category-link-title{font-weight:500;font-size:18px;line-height:24px;color:#222;display:block}.box-category[data-layout="3"] .box-category-middle .box-category-item{display:flex;padding:32px 0;border-top:1px dashed #d9d9d9}.box-category[data-layout="3"] .box-category-middle .box-category-item .box-category-link-with-avatar{width:260px;margin-right:16px}.box-category[data-layout="3"] .box-category-middle .box-category-item .box-category-content{width:calc(100% - 276px)}.box-category[data-layout="3"] .box-category-middle .box-category-item .box-category-content .box-category-category{font-size:16px;line-height:22px;color:#565656;display:block}.box-category[data-layout="3"] .box-category-middle .box-category-item .box-category-content .box-category-sapo{font-size:16px;line-height:22px;color:#565656;max-height:66px;overflow:hidden}.box-category[data-layout="3"] .box-category-middle .box-category-item .box-category-content .box-content-title{margin-bottom:8px}.box-category[data-layout="3"] .box-category-middle .box-category-item .box-category-content .box-category-link-title{font-weight:500;font-size:18px;line-height:24px;color:#222;display:block}.box-category[data-layout="14"] .box-category-top{padding-bottom:8px;border-bottom:1px solid #e2e2e2;margin-bottom:16px;display:flex;justify-content:space-between}.box-category[data-layout="14"] .box-category-top .box-category-title{font-weight:700;font-size:22px;line-height:28px;color:#222;display:block;padding-left:11px;position:relative}.box-category[data-layout="14"] .box-category-top .box-category-title:before{content:"";width:3px;height:15px;position:absolute;left:0;top:6px;background:#ed1c24}.box-category[data-layout="14"] .box-category-middle .box-category-item{display:flex;margin-bottom:16px}.box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-link-with-avatar{width:239px;margin-right:24px}.box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-content{width:calc(100% - 263px)}.box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-content .box-content-title{margin-bottom:8px}.box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-content .box-category-link-title{font-weight:500;font-size:18px;line-height:24px;color:#222}.box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-content .box-category-sapo{font-size:16px;line-height:22px;color:#565656;display:block;overflow:hidden}.box-category[data-layout="21"] .box-category-middle .box-category-item{padding:16px 0;border-top:1px dashed #d9d9d9}.box-category[data-layout="21"] .box-category-middle .box-category-item:first-child{padding-top:0;border-top:0}.box-category[data-layout="21"] .box-category-middle .box-category-item:first-child .box-category-link-title{font-size:18px;line-height:24px;color:#222}.box-category[data-layout="21"] .box-category-middle .box-category-item .box-category-link-with-avatar{margin-bottom:8px}.box-category[data-layout="21"] .box-category-middle .box-category-item .box-category-link-title{font-weight:500;font-size:14px;line-height:18px;color:#222;display:block;max-height:72px;overflow:hidden}.box-category[data-layout="22"] .box-category-top{padding-bottom:8px;border-bottom:1px solid #e2e2e2;margin-bottom:16px;display:flex;justify-content:space-between}.box-category[data-layout="22"] .box-category-top .box-category-title{font-weight:700;font-size:22px;line-height:28px;color:#222;display:block;padding-left:11px;position:relative}.box-category[data-layout="22"] .box-category-top .box-category-title:before{content:"";width:3px;height:15px;position:absolute;left:0;top:6px;background:#ed1c24}.box-category[data-layout="22"] .box-category-middle .box-category-item{border-bottom:1px dashed #d9d9d9;padding-bottom:16px}.box-category[data-layout="22"] .box-category-middle .box-category-item .box-category-link-with-avatar{margin-bottom:8px}.box-category[data-layout="22"] .box-category-middle .box-category-item .box-category-link-title{font-size:16px;line-height:20px;color:#222;font-weight:700}.box-category[data-layout="22"] .box-category-middle .box-category-sub .box-sub-item{padding:16px 0;border-bottom:1px dashed #d9d9d9}.box-category[data-layout="22"] .box-category-middle .box-category-sub .box-sub-item:last-child{border-bottom:0;padding-bottom:0}.box-category[data-layout="22"] .box-category-middle .box-category-sub .box-sub-item .box-category-link-title{font-weight:400;font-size:16px;line-height:22px;color:#222;display:block}.list__focus-flex{display:flex;padding-bottom:24px;border-bottom:1px solid #f2f2f2;margin-bottom:24px}.list__focus-sub{width:315px;padding-left:15px;border-left:1px solid #f2f2f2;margin-left:16px}.list__focus-main{width:calc(100% - 331px)}.list__focus-main .box-top{padding-bottom:24px;border-bottom:1px solid #f2f2f2;margin-bottom:8px;display:flex}.list__focus-main .box-top .box-sub{width:235px;padding-left:15px;border-left:1px solid #f2f2f2;margin-left:16px}.list__focus-main .box-top .box-main{width:calc(100% - 251px)}.list__tag{display:flex;align-items:center;padding-bottom:8px;border-bottom:1px solid #f2f2f2}.list__tag .list-tag{display:flex;align-items:center}.list__tag .list{margin-left:18px}.list__tag .list .swiper-slide{width:auto;background:#f2f2f2;border-radius:4px}.list__tag .list .item{background:#f2f2f2;border-radius:4px;padding:4px 8px;overflow:hidden;font-weight:400;font-size:16px;line-height:22px;color:#666;display:block}.list__tag .box-control{display:flex;align-items:center;margin-left:30px}.list__tag .box-control .swiper-btn-prev,.list__tag .box-control .swiper-btn-next{cursor:pointer;display:flex}.list__tag .box-control .swiper-btn-prev.swiper-button-disabled,.list__tag .box-control .swiper-btn-next.swiper-button-disabled{opacity:.4}.list__listing{margin-bottom:50px}.list__listing-flex{display:flex}.list__listing-qa{width:300px;margin-left:15px}.list__listing-sub{border-right:1px solid #f2f2f2;width:235px;padding-right:15px;margin-left:16px;height:100%}.list__listing-sub .list-box-right{background:#fafafc;border:1px solid #f2f2f2;border-radius:8px;margin-bottom:32px;padding:16px}.list__listing-sub .list-box-right:last-child{margin-bottom:0}.list__listing-main{flex:1;padding-right:16px;border-right:1px solid #f2f2f2}.list__listing-main .view-more{background:#fafafc;border:1px solid #d9d9d9;border-radius:4px;display:block;font-size:15px;line-height:22px;color:#8f8f8f;padding:8px;text-align:center}.list__breadcrumb .list__breadcrumb-flex{display:flex;margin-bottom:24px;padding-bottom:8px;border-bottom:1px solid #e2e2e2;align-items:center}.list__breadcrumb .list__breadcrumb-flex .title{font-size:32px;line-height:46px;color:#222;font-weight:700;margin-right:40px;padding-left:10px;position:relative}.list__breadcrumb .list__breadcrumb-flex .title:before{content:"";width:3px;height:20px;background:#ed1c24;position:absolute;left:0;top:12px}.list__breadcrumb .list__breadcrumb-flex .sub-category{display:flex;align-items:center;position:relative;top:6px}.list__breadcrumb .list__breadcrumb-flex .sub-category a{font-weight:500;font-size:14px;line-height:18px;color:#656565;margin-right:24px}.box-category[data-layout="3"] .box-category-middle .box-category-item .box-category-content .box-category-category{display:none}.footer__nav .menu-nav li .nav-link{padding:0}.fb-loading-wrapper{max-width:100%;clear:both;padding:25px 0;display:none}.header__action .box-search .input-search{visibility:hidden}.clearfix:after{visibility:hidden;display:block;font-size:0;content:"";clear:both;height:0}.active_menu a{color:#ed1c24 !important}.img-resize video{position:absolute;top:0;left:0;width:100%;height:100%;bottom:0;margin:auto;background-size:cover;background-position:center}video.lozad-video{width:100%;height:100%;object-fit:cover}.list__breadcrumb .list__breadcrumb-flex .title:before{top:6px}.list__tag{justify-content:space-between}.header__clink{padding:0 12px}.header__cate ul li:last-child .header__clink{border-right:1px solid #ed1c24}.header__action .btn_order{display:block;text-align:center;border-radius:4px;font-size:13px;line-height:16px;color:#fff;padding:4px 16px;font-weight:500;border:1px solid #ff7772}.header__action .loginform{margin-right:16px;border-right:1px solid #ed1c24;padding-right:16px}.footer__logo{margin-right:46px}.footer__m-content .box{margin-right:45px;color:#565656}.footer__m-content .box a{color:#565656}.footer__m-right{width:324px}.footer__m-right .form-note .submit{background-color:#5580df !important;width:auto !important;background-image:url(https://static-tuoitre.tuoitre.vn/images/email_icofooter.png) !important;background-repeat:no-repeat !important;background-size:22px !important;padding:0 13px 0 50px;background-position:15px 4px !important;border-radius:4px}#modalSendEmailCatpchaForm{position:fixed;z-index:99999 !important;left:50%;top:50%;transform:translate(-50%,-50%);width:533px;background:#fff;border-radius:8px;transition:visibility 0s,opacity .3s linear;border:1px solid #f2f2f2;display:none}.footer{position:relative}.bannerballoon{position:absolute;bottom:0;right:0}#LeaderBoardTop{min-height:250px;transition:all .6s ease-in-out;background:#f7f7f7}.box-category[data-layout="14"] .box-category-middle .box-category-item{border-bottom:1px dashed #d9d9d9;padding-bottom:16px}.introduce_tto{margin-left:10px;padding-top:6px;box-sizing:border-box}.modal_introduce{display:none;position:fixed;top:0;left:0;right:0;height:auto;min-height:100%;width:100%;z-index:999999;overflow-y:auto}.footer__logo .logo{height:40px;background:url(https://static-tuoitre.tuoitre.vn/tuoitre/web_images/logotuoitrepro-02.svg);background-repeat:no-repeat;background-size:100% 100%}.list__focus-flex{border-bottom:unset;margin-bottom:unset}.list__breadcrumb .list__breadcrumb-flex .title{text-transform:uppercase;font-size:26px;line-height:34px}.list__breadcrumb .list__breadcrumb-flex .sub-category a{font-size:16px;line-height:20px}.list__breadcrumb .list__breadcrumb-flex .sub-category{top:4px}.boxraovat_catedetail .box-category[data-layout="14"] .box-category-middle .box-category-item{display:flex;margin-bottom:16px}.boxraovat_catedetail .box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-link-with-avatar{width:40%;margin-right:8px;flex-shrink:0}.boxraovat_catedetail .box-category .box-category-link-with-avatar img{border-radius:8px}.boxraovat_catedetail .box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-content .box-category-link-title{font-size:14px;line-height:16px}.boxraovat_catedetail .box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-content{width:60%}.boxraovat_catedetail .box-category-category.price{font-size:13px;font-weight:500;color:#ec3222}.boxraovat_catedetail .box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-content .box-category-sapo{font-size:13px}.boxraovat_catedetail .box-category[data-layout="14"] .box-category-middle .box-category-item .box-category-content .box-content-title{margin-bottom:2px}.footer__m-content .box .list.no-border a{border:none;padding:0}.box-category .box-category-link-with-avatar img{background:#f1f1f1}.box-category .box-content-title,.box-category .box-category-top{position:relative}.box-category .box-content-title .box-title-text{padding-right:16px}.header__action .btn_order{display:none}.header__action .loginform{margin-right:0;padding-right:12px;border-right:none}.header__top-left .header__logo img{}</style>
+
+<link rel="canonical" href="https://tuoitre.vn/tin-moi-nhat.htm" /></head>
+<body class="  pagewaiting">
+    <script type="text/javascript">var ttostarteamplate = ""; if (document.cookie.length > 0) { var t = document.cookie.indexOf("_ck_user="); if (-1 != t) { t = t + 8 + 1; var e = document.cookie.indexOf(";", t); -1 == e && (e = document.cookie.length), ttostarteamplate = unescape(document.cookie.substring(t, e)) } else ttostarteamplate = "" } "true" == ttostarteamplate && document.body.classList.add("blue-style");</script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFJP3N" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+        <div id="admWrapsite">
+            <div class="wapper">
+                
+
+
+<div id="LeaderBoardTop">
+
+<div class="clearfix " data-atc="atc-nonstar">
+<zone id="jmg15j90"></zone>
+
+<script async>
+    if (appSettings.allowAds) arfAsync.push("jmg15j90");
+</script>
+
+</div>
+
+</div>
+<div class="header">
+<div class="header__sc">
+    <div class="header__top">
+        <div class="container">
+            <div class="header__top-flex">
+                <div class="header__top-left">
+                    <a href="/" title="Tin tức, tin nóng, đọc báo điện tử - Báo Điện Tử Online" class="header__logo"><img alt="Tin tức, tin nóng, đọc báo điện tử - Báo Điện Tử Online" src="https://static-tuoitre.tuoitre.vn/tuoitre/web_images/logottonew.svg" width="112" height="36" /></a>
+                    
+                </div>
+                <div class="header__top-right">
+                    <div class="header__cate">
+                        <ul>
+                            <li>
+                                <a href="https://podcast.tuoitre.vn/" target="_blank" rel="nofollow" title="PODCAST Báo Điện Tử" class="header__clink">
+                                    <span class="icon">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.0909 7.3125H12.6818C12.4558 7.3125 12.2727 7.50129 12.2727 7.73438V9C12.2727 10.9723 10.6238 12.5548 8.67298 12.3587C6.9727 12.1875 5.72727 10.6113 5.72727 8.84971V7.73438C5.72727 7.50129 5.5442 7.3125 5.31818 7.3125H4.90909C4.68307 7.3125 4.5 7.50129 4.5 7.73438V8.79328C4.5 11.1568 6.1356 13.2638 8.38636 13.5839V14.4844H6.95455C6.72852 14.4844 6.54545 14.6732 6.54545 14.9062V15.3281C6.54545 15.5612 6.72852 15.75 6.95455 15.75H11.0455C11.2715 15.75 11.4545 15.5612 11.4545 15.3281V14.9062C11.4545 14.6732 11.2715 14.4844 11.0455 14.4844H9.61364V13.594C11.8051 13.2839 13.5 11.344 13.5 9V7.73438C13.5 7.50129 13.3169 7.3125 13.0909 7.3125ZM9 11.5312C10.3556 11.5312 11.4545 10.398 11.4545 9H9.27281C9.12222 9 9 8.90561 9 8.78906V8.36719C9 8.25064 9.12222 8.15625 9.27281 8.15625H11.4545V7.3125H9.27281C9.12222 7.3125 9 7.21811 9 7.10156V6.67969C9 6.56314 9.12222 6.46875 9.27281 6.46875H11.4545V5.625H9.27281C9.12222 5.625 9 5.53061 9 5.41406V4.99219C9 4.87564 9.12222 4.78125 9.27281 4.78125H11.4545C11.4545 3.38326 10.3556 2.25 9 2.25C7.64438 2.25 6.54545 3.38326 6.54545 4.78125V9C6.54545 10.398 7.64438 11.5312 9 11.5312Z" fill="#FF7772" />
+                                        </svg>
+                                    </span>
+                                    Thể thao
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/channel/UC47WI-kZXFf0H_f7pvaNCEQ" target="_blank" rel="nofollow" title="YOUTUBE BÁO Báo Điện Tử" class="header__clink">
+                                    <span class="icon">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.80103 5.78651C3.67089 6.1225 3.59951 6.48778 3.59951 6.86972V11.4001C3.59951 13.057 4.94266 14.4001 6.59951 14.4001H11.6699C12.052 14.4001 12.4174 14.3287 12.7535 14.1985C12.0218 15.1425 10.8769 15.7501 9.59014 15.7501H6.24969C4.04055 15.7501 2.24969 13.9592 2.24969 11.7501V8.94967C2.24969 7.663 2.8572 6.51822 3.80103 5.78651Z" fill="#FF7772" />
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.6795 2.24966C6.47037 2.24966 4.6795 4.04052 4.6795 6.24966V9.3201C4.6795 11.5292 6.47037 13.3201 8.6795 13.3201H11.7499C13.9591 13.3201 15.7499 11.5292 15.7499 9.3201V6.24966C15.7499 4.04052 13.9591 2.24966 11.7499 2.24966H8.6795ZM12.1051 8.15374C12.2851 8.04981 12.2851 7.78999 12.1051 7.68606L9.27002 6.04921C9.09002 5.94528 8.86501 6.07519 8.86501 6.28305L8.86501 9.55675C8.86501 9.76461 9.09002 9.89451 9.27002 9.79059L12.1051 8.15374Z" fill="#FF7772" />
+                                        </svg>
+                                    </span>
+                                    YouTube
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://tuoitre.vn/can-biet.htm" title="CẦN BIẾT" class="header__clink">
+                                    <span class="icon">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.99662 14.2486C8.84917 14.2486 8.70171 14.2518 8.55425 14.2486C8.10867 14.2356 7.78812 13.9218 7.78491 13.4753C7.78491 13.2941 7.75606 13.1712 7.59257 13.0579C7.40024 12.9285 7.33292 12.7085 7.33292 12.4723C7.33292 12.1973 7.35536 11.9223 7.32651 11.6505C7.29446 11.3108 7.24317 10.971 7.15982 10.6443C7.07647 10.3142 6.86491 10.0489 6.60846 9.82567C5.8872 9.19476 5.44804 8.40206 5.29737 7.4476C5.03772 5.83956 5.86476 4.18947 7.30407 3.43883C7.85864 3.14764 8.44847 2.9794 9.07676 3.00204C10.6764 3.06028 12.1221 4.16035 12.5676 5.71338C13.026 7.302 12.6125 8.67384 11.4136 9.79979C11.1796 10.0198 10.9713 10.256 10.8623 10.5634C10.8078 10.7219 10.7789 10.8901 10.7469 11.0552C10.6539 11.5275 10.6603 12.0064 10.6635 12.4852C10.6635 12.7797 10.5321 12.9997 10.2853 13.1582C10.2532 13.1776 10.2276 13.2294 10.2212 13.2682C10.2083 13.375 10.218 13.485 10.2019 13.595C10.1538 13.9541 9.85893 14.2259 9.50311 14.2453C9.33641 14.255 9.16652 14.2453 8.99983 14.2453C8.99662 14.2453 8.99662 14.2453 8.99662 14.2486ZM6.43856 6.47695C6.43856 6.51901 6.43536 6.5449 6.43856 6.57402C6.45459 6.71638 6.55717 6.81668 6.6918 6.81991C6.82003 6.82315 6.92261 6.72932 6.94825 6.59343C6.95466 6.55784 6.95466 6.52225 6.95466 6.48342C7.01236 5.61308 7.44191 5.00157 8.23049 4.6489C8.46129 4.54537 8.71133 4.50331 8.96457 4.49684C9.1569 4.49037 9.27551 4.36418 9.24986 4.20241C9.22743 4.05034 9.11202 3.97269 8.91969 3.97916C7.56693 4.02446 6.48344 5.11805 6.43856 6.47695ZM7.84582 11.9708C7.84582 12.152 7.83941 12.3299 7.84582 12.5047C7.85223 12.6405 7.9516 12.7376 8.08624 12.7408C8.69209 12.7441 9.30115 12.7441 9.90701 12.7408C10.0288 12.7408 10.125 12.6664 10.1346 12.5499C10.1538 12.3558 10.141 12.1617 10.141 11.974C9.37488 11.9708 8.61836 11.9708 7.84582 11.9708ZM9.69865 13.2715C9.22422 13.2715 8.76582 13.2715 8.2978 13.2715C8.2978 13.3459 8.2946 13.4138 8.2978 13.4818C8.30742 13.6241 8.40038 13.7277 8.54143 13.7277C8.84596 13.7341 9.14729 13.7341 9.45182 13.7277C9.59286 13.7244 9.68582 13.6241 9.69544 13.4785C9.70185 13.4138 9.69865 13.3459 9.69865 13.2715Z" fill="#FF7772" />
+                                        </svg>
+                                    </span>
+                                    Cần biết
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://raovat.tuoitre.vn" target="_blank" rel="nofollow" title="RAO VẶT" class="header__clink">
+                                    <span class="icon">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15 6.08317C15 6.05337 14.9706 6.03251 14.9442 6.04443C13.1301 6.73582 11.319 7.42722 9.50195 8.11265C9.39921 8.15139 9.36986 8.19907 9.36986 8.30636C9.37279 10.4938 9.37279 12.6842 9.37279 14.8716V14.958C9.37279 14.9879 9.40215 15.0087 9.42857 14.9968C11.2838 14.2905 13.1272 13.5902 14.9706 12.8868C14.9883 12.8809 15 12.863 15 12.8451C15 10.5921 15 8.33616 15 6.08317ZM12.0558 12.8779C12.0294 12.8868 12 12.869 12 12.8392C12 12.6097 12.0029 12.3951 11.9971 12.1776C11.9941 12.1031 12.0235 12.0733 12.0881 12.0524C12.1937 12.0166 12.2994 11.9719 12.4051 11.9332C12.7485 11.8021 13.089 11.6739 13.4442 11.5398C13.4706 11.5309 13.5 11.5488 13.5 11.5786C13.5 11.817 13.5029 12.0464 13.4971 12.2759C13.4971 12.3027 13.4589 12.3415 13.4325 12.3534C13.2916 12.413 13.1507 12.4637 13.0068 12.5173C12.6928 12.6365 12.3816 12.7557 12.0558 12.8779Z" fill="#FF7772" />
+                                            <path d="M8.57142 14.9936C8.59784 15.0026 8.62426 14.9817 8.62426 14.9549V14.8834C8.62426 12.687 8.62426 10.4906 8.6272 8.29425C8.6272 8.19292 8.59784 8.1512 8.50685 8.11842C7.96966 7.91875 7.43248 7.71312 6.8953 7.50749C6.86594 7.49557 6.83952 7.48663 6.80724 7.47769C6.78082 7.46875 6.7544 7.48961 6.7544 7.51643V9.29856C6.7544 9.32836 6.72504 9.34922 6.69863 9.3373C6.60763 9.30154 6.5225 9.27174 6.44031 9.23896C6.07925 9.10187 5.71819 8.9618 5.3542 8.83068C5.27494 8.80087 5.24853 8.76511 5.24853 8.67869C5.25146 8.11246 5.25146 7.54325 5.25146 6.97702C5.25146 6.91742 5.24559 6.87868 5.17808 6.85186C4.47357 6.58662 3.76907 6.31543 3.06457 6.04722C3.06164 6.04424 3.05577 6.04424 3.05283 6.04424C3.02641 6.03828 3.00293 6.05914 3.00293 6.08596V6.14854C3.00293 8.35385 3.00293 10.5592 2.99999 12.7615C2.99999 12.8539 3.02935 12.8926 3.11154 12.9224C4.91682 13.6049 6.71917 14.2933 8.52152 14.9787C8.5362 14.9817 8.55381 14.9877 8.57142 14.9936Z" fill="#FF7772" />
+                                            <path d="M3.10269 5.2217C3.06746 5.2366 3.06746 5.28726 3.10269 5.29918C3.66629 5.51376 4.20347 5.71939 4.74359 5.92502C4.91091 5.9876 5.08116 6.10382 5.24848 6.09786C5.41873 6.0919 5.58605 5.96674 5.75337 5.89223C6.3023 5.64488 6.84828 5.39455 7.39721 5.14422C7.46472 5.11144 7.52343 5.10846 7.59388 5.14124C8.02539 5.33197 8.46277 5.51674 8.89427 5.70448C8.90015 5.70746 8.90308 5.70746 8.90895 5.71045C8.94124 5.72535 8.94124 5.77303 8.90895 5.78793C8.225 6.07402 7.54985 6.35714 6.85416 6.64919C6.81893 6.66409 6.81893 6.71476 6.85416 6.72668C6.9158 6.75052 6.96864 6.77138 7.02148 6.79224C7.65259 7.03363 8.28371 7.27502 8.91482 7.51343C8.96179 7.53132 9.02343 7.5343 9.06746 7.51642C11.0136 6.78032 12.954 6.04124 14.8972 5.29918C14.9324 5.28726 14.9324 5.2366 14.9001 5.2217C14.8943 5.21872 14.8884 5.21574 14.8825 5.21276C12.951 4.47964 11.0225 3.74653 9.09095 3.01341C9.04105 2.99553 8.95885 2.99553 8.90895 3.01341C6.97744 3.74355 5.04887 4.47964 3.1203 5.21574C3.11443 5.21574 3.10856 5.21872 3.10269 5.2217Z" fill="#FF7772" />
+                                        </svg>
+                                    </span>
+                                    Rao vặt
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                   
+                        
+<div class="loginform">
+<div class="h_logout" id="head_login">
+    <a href="#" rel="nofollow" class="header__user" data-atc="login">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="16" cy="13.3333" rx="4" ry="4" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" />
+            <circle cx="16" cy="16" r="12" stroke="white" stroke-width="2" />
+            <path d="M23.7074 25.1019C23.8769 25.0088 23.957 24.8073 23.8854 24.6277C23.3712 23.3393 22.3808 22.2046 21.0419 21.3776C19.5955 20.4843 17.8232 20 16 20C14.1768 20 12.4046 20.4842 10.9581 21.3776C9.61925 22.2046 8.6288 23.3393 8.11464 24.6277C8.04298 24.8073 8.12314 25.0088 8.29264 25.1019C13.0929 27.7373 18.9071 27.7373 23.7074 25.1019Z" fill="white" />
+        </svg>
+    </a>
+</div>
+<div class="h_login" id="head_islogin">
+    <a class="h_name" href="https://sso.tuoitre.vn" target="_blank" rel="nofollow" title="Thông tin tài khoản">
+        <img  src="https://static-tuoitre.tuoitre.vn/tuoitre/web_images/userdeffault.jpg" alt="thông tin tài khoản" data-uinfo="avatar_path" />
+        <span class="txt"></span>
+    </a>
+    <div class="logininfo">
+        <div class="u_name">Xin chào, <a href="#" rel="nofollow" title="" data-uinfo="name"></a></div>
+        <ul>
+            <li>
+                <a href="https://sso.tuoitre.vn" target="_blank" rel="nofollow" title="Cài đặt tài khoản">Cài đặt tài khoản</a>
+            </li>
+            <li>
+                <a href="https://sso.tuoitre.vn/bookmarked-articles" target="_blank" rel="nofollow" title="Tin đã lưu">Tin đã lưu</a>
+            </li>
+            <li>
+                <a href="https://sso.tuoitre.vn/commented-articles" target="_blank" rel="nofollow" title="Bình luận của bạn">Bình luận của bạn</a>
+            </li>
+            <li>
+                <a href="https://sso.tuoitre.vn/transactions" target="_blank" rel="nofollow" title="Lịch sử giao dịch">Lịch sử giao dịch</a>
+            </li>
+            <li data-atc="atc-star">
+                <a href="/danh-cho-ban.htm" title="Dành cho bạn">Dành cho bạn</a>
+            </li>
+            <li data-atc="atc-startemp" class="templatestarbtn">
+                <a href="#" rel="nofollow" title="Vào Báo Điện Tử Sao" id="btnStarTemp1">Vào Báo Điện Tử Sao</a>
+            </li>
+            <li data-atc="logouttemplatestar" class="templatestarbtn">
+                <a href="#" rel="nofollow" title="Thoát Báo Điện Tử Sao">Thoát Báo Điện Tử Sao</a>
+            </li>
+            <li>
+                <a href="#" rel="nofollow" id="head_logout" title="Đăng xuất" data-atc="logout">Đăng xuất</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+                        
+                        <a href="https://order.tuoitre.vn/formOrder.aspx" target="_blank" rel="nofollow" class="btn_order" title="Đặt báo">Đặt báo</a>
+                        <a href="https://sso.tuoitre.vn/dang-ky-tuoi-tre-sao" target="_blank" rel="nofollow" 
+                            data-view="hidebylogin" class="btnstarregister templatestarbtn">Đăng ký Báo Điện Tử Sao</a>
+                        <a href="#" rel="nofollow" data-atc="atc-startemp" title="Vào Báo Điện Tử Sao" class="btnstarregister templatestarbtn" id="btnStarTemp">Vào trang Báo Điện Tử Sao</a>
+                        <a   class="introduce_tto" href="#" rel="nofollow">
+                            <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="8.5" cy="8.5" r="7.5" fill="white" />
+                                <path d="M15.8028 18.048C15.3611 17.8664 14.9462 17.6938 14.5284 17.5211C13.633 17.1519 12.7376 16.7828 11.8422 16.4077C11.7467 16.366 11.6631 16.36 11.5616 16.4017C6.6936 18.2743 1.28836 15.3568 0.189996 10.263C-0.791963 5.70517 2.13003 1.18303 6.69957 0.194651C11.4183 -0.826478 16.0625 2.27561 16.8803 7.02401C17.2892 9.40565 16.7579 11.5848 15.3342 13.5408C15.2596 13.642 15.2387 13.7343 15.2537 13.8563C15.4297 15.1722 15.6029 16.491 15.779 17.8099C15.7879 17.8783 15.7939 17.9528 15.8028 18.048ZM9.37086 11.6087C9.37981 11.5789 9.38578 11.564 9.38578 11.5491C9.39175 11.4539 9.40369 11.3616 9.39772 11.2663C9.3619 10.6947 9.60665 10.2928 10.0842 9.97724C10.5647 9.65572 11.0363 9.30443 11.4601 8.91146C12.7913 7.673 12.9913 5.29136 11.29 3.92192C10.517 3.29972 9.62455 3.06453 8.65155 3.07048C6.64286 3.07941 5.0192 4.38932 4.6103 6.34524C4.56553 6.55661 4.54165 6.77096 4.50882 6.98828C5.15053 7.10141 5.76537 7.21156 6.38917 7.32469C6.40111 7.25622 6.41006 7.20263 6.422 7.15202C6.50258 6.83645 6.55929 6.51195 6.66973 6.20532C6.9861 5.32113 7.61885 4.88053 8.51426 4.88053C9.69619 4.88053 10.3976 5.83319 10.1618 6.97637C10.0484 7.53606 9.70216 7.9588 9.2843 8.32498C8.98583 8.58696 8.67244 8.83108 8.36801 9.08413C8.01283 9.37885 7.73824 9.72419 7.72332 10.2095C7.70839 10.6649 7.71735 11.1204 7.71735 11.5789C7.71735 11.5878 7.72929 11.5938 7.73824 11.6087C8.2725 11.6087 8.81869 11.6087 9.37086 11.6087ZM9.72305 12.8441C9.04254 12.8441 8.37696 12.8441 7.71436 12.8441C7.71436 13.5616 7.71436 14.2672 7.71436 14.9698C8.39188 14.9698 9.05448 14.9698 9.72305 14.9698C9.72305 14.2553 9.72305 13.5527 9.72305 12.8441Z" fill="#5580DF" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header__middle">
+        <div class="header__postion">
+            <div class="header__nav">
+                <div class="container">
+                    <div class="header__nav-flex">
+                        <ul class="menu-nav">
+                            
+                            <li>
+                                <a href="/" title="Trang chủ" class="nav-link home">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.23348 7.8415L8.81161 2.47448C9.12279 2.17517 9.62721 2.17517 9.93839 2.47448L15.5165 7.8415C15.6659 7.98526 15.75 8.18023 15.75 8.38357V15.7333C15.75 16.1567 15.3932 16.5 14.9531 16.5H10.9688V11.133H7.78125V16.5H3.79688C3.35678 16.5 3 16.1567 3 15.7333V8.38357C3 8.18023 3.08403 7.98526 3.23348 7.8415Z" fill="#ED1C24" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                
+                                <a title="Video" href="/video.htm" class="nav-link">Video</a>
+                            </li>
+                            <li>
+                                <a title="Thời sự" href="/thoi-su.htm" class="nav-link ">Thời sự
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Thế giới" href="/the-gioi.htm" class="nav-link ">Thế giới
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Pháp luật" href="/phap-luat.htm" class="nav-link ">Pháp luật
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Kinh doanh" href="/kinh-doanh.htm" class="nav-link ">Kinh doanh
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Công nghệ" href="/cong-nghe.htm" class="nav-link ">Công nghệ
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Xe" href="/xe.htm" class="nav-link ">Xe
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Du lịch" href="/du-lich.htm" class="nav-link ">Du lịch
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Nhịp sống trẻ" href="/nhip-song-tre.htm" class="nav-link ">Nhịp sống trẻ
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/van-hoa.htm" title="Văn hóa" class="nav-link ">Văn hóa
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Giải trí" href="/giai-tri.htm" class="nav-link ">Giải trí
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Thể thao" href="/the-thao.htm" class="nav-link ">Thể thao
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Giáo dục" href="/giao-duc.htm" class="nav-link ">Giáo dục
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/nha-dat.htm" title="Nhà đất" class="nav-link">Nhà đất</a>
+                            </li>
+                            <li>
+                                <a title="Sức khỏe" href="/suc-khoe.htm" class="nav-link ">Sức khỏe
+                                </a>
+                            </li>
+                            <li>
+                                <a title="Giả-thật" href="/gia-that.htm" class="nav-link ">Giả thật
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/ban-doc-lam-bao.htm" title="Bạn đọc" class="nav-link ">Bạn đọc
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="LeaderBoardBackgroundU">
+
+<div class="clearfix " data-atc="atc-nonstar">
+<zone id="jphs5rwl"></zone>
+
+<script async>
+    (runinitscroll = window.runinitscroll || []).push(function () {
+        if (appSettings.allowAds) arfAsync.push("jphs5rwl");
+    });
+</script>
+
+</div>
+
+</div>
+
+                <div class="main" id="content">
+                    
+
+<div class="pagetag">
+    <div class="list__breadcrumb">
+        <div class="container">
+            <div class="list__breadcrumb-flex">
+                <h1>
+                    <span class="title">Tin mới nhất</span>
+                </h1>
+                <p>Thứ ba, ngày 16 tháng 4 năm 2024</p>
+            </div>
+        </div>
+    </div>
+    <div class="list__listing">
+        <div class="container">
+            <div class="list__listing-flex">
+                <div class="list__listing-main">
+                    <div class="box-category-news box-first">
+                        <div class="box-category box-border-top box-last-news" data-layout="3">
+                            <div class="box-category-middle" id="load-list-news">
+                                
+                                
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:59:30"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/xe-cho-oc-buu-vang-boc-chay-tren-cao-toc-tp-hcm-long-thanh-dau-giay-2024041608510032.htm" title="Xe ch&#7903; &#7889;c bươu vàng b&#7889;c cháy trên cao t&#7889;c TP.HCM - Long Thành - D&#7847;u Giây" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/16/chay-xe-cao-toc-1-1713231744502800767933-83-0-1333-2000-crop-17132318379211746982505.jpg" alt="Xe ch&#7903; &#7889;c bươu vàng b&#7889;c cháy trên cao t&#7889;c TP.HCM - Long Thành - D&#7847;u Giây" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/thoi-su.htm" title="Th&#7901;i s&#7921;">Th&#7901;i s&#7921;</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="2024041608510032">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="2024041608510032"
+                        href="/xe-cho-oc-buu-vang-boc-chay-tren-cao-toc-tp-hcm-long-thanh-dau-giay-2024041608510032.htm"
+                        title="Xe ch&#7903; &#7889;c bươu vàng b&#7889;c cháy trên cao t&#7889;c TP.HCM - Long Thành - D&#7847;u Giây" >Xe chở ốc bươu vàng bốc cháy trên cao tốc TP.HCM - Long Thành - Dầu Giây</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Chiếc xe tải chở ốc bươu vàng đang chạy trên cao tốc TP.HCM - Long Thành - Dầu Giây thì bất ngờ bốc cháy dữ dội.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:53:46"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/de-nghi-chinh-phu-chi-dao-tap-trung-thanh-tra-kiem-tra-cac-doanh-nghiep-kinh-doanh-vang-20240416082639174.htm" title="Đ&#7873; ngh&#7883; Chính ph&#7911; ch&#7881; đ&#7841;o t&#7853;p trung thanh tra, ki&#7875;m tra các doanh nghi&#7879;p kinh doanh vàng" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/16/duong-thanh-binh-1713230588771554978032-0-0-896-1434-crop-1713230604106453377766.jpeg" alt="Đ&#7873; ngh&#7883; Chính ph&#7911; ch&#7881; đ&#7841;o t&#7853;p trung thanh tra, ki&#7875;m tra các doanh nghi&#7879;p kinh doanh vàng" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/thoi-su.htm" title="Th&#7901;i s&#7921;">Th&#7901;i s&#7921;</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240416082639174">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240416082639174"
+                        href="/de-nghi-chinh-phu-chi-dao-tap-trung-thanh-tra-kiem-tra-cac-doanh-nghiep-kinh-doanh-vang-20240416082639174.htm"
+                        title="Đ&#7873; ngh&#7883; Chính ph&#7911; ch&#7881; đ&#7841;o t&#7853;p trung thanh tra, ki&#7875;m tra các doanh nghi&#7879;p kinh doanh vàng" >Đề nghị Chính phủ chỉ đạo tập trung thanh tra, kiểm tra các doanh nghiệp kinh doanh vàng</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Ủy ban Thường vụ Quốc hội đề nghị Chính phủ tập trung thanh tra, kiểm tra các doanh nghiệp kinh doanh vàng, kịp thời xử lý vi phạm nếu có.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:51:04"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/ceo-apple-tim-cook-mang-gi-den-viet-nam-20240416004805328.htm" title="CEO Apple Tim Cook mang gì đ&#7871;n Vi&#7879;t Nam?" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/16/5d4835fa399197cfce80-4read-only-1713197640008754107528-50-0-1300-2000-crop-171320304387161362497.jpg" alt="CEO Apple Tim Cook mang gì đ&#7871;n Vi&#7879;t Nam?" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/the-gioi.htm" title="Th&#7871; gi&#7899;i">Th&#7871; gi&#7899;i</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240416004805328">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240416004805328"
+                        href="/ceo-apple-tim-cook-mang-gi-den-viet-nam-20240416004805328.htm"
+                        title="CEO Apple Tim Cook mang gì đ&#7871;n Vi&#7879;t Nam?" >CEO Apple Tim Cook mang gì đến Việt Nam?</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Làm việc với Thủ tướng Phạm Minh Chính hôm nay 16-4, dự kiến CEO Tim Cook sẽ đưa ra các đề xuất liên quan đầu tư của Apple tại Việt Nam.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:17:17"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/nhieu-tiem-vang-dong-loat-dong-cua-vi-sao-20240416003543313.htm" title="Nhi&#7873;u ti&#7879;m vàng đ&#7891;ng lo&#7841;t đóng c&#7917;a, vì sao?" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/16/iem-vang-tren-duong-nguyen-duy-duong-dan-thong-bao-nghi-dai-ngay-anh-phuong-quyen-2163936-2read-only-1713197640036798774158-84-0-1334-2000-crop-1713202403258972773457.jpg" alt="Nhi&#7873;u ti&#7879;m vàng đ&#7891;ng lo&#7841;t đóng c&#7917;a, vì sao?" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/kinh-doanh.htm" title="Kinh doanh">Kinh doanh</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240416003543313">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240416003543313"
+                        href="/nhieu-tiem-vang-dong-loat-dong-cua-vi-sao-20240416003543313.htm"
+                        title="Nhi&#7873;u ti&#7879;m vàng đ&#7891;ng lo&#7841;t đóng c&#7917;a, vì sao?" >Nhiều tiệm vàng đồng loạt đóng cửa, vì sao?</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Hàng loạt tiệm vàng tại TP.HCM treo biển tạm đóng cửa dài ngày khi có tin Tổng cục Quản lý thị trường đồng loạt ra quân kiểm tra các tiệm vàng.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:11:30"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/nhung-ngay-trieu-cuong-co-duong-nhung-phai-di-xuong-20240416000856916.htm" title="Nh&#7919;ng ngày tri&#7873;u cư&#7901;ng: Có đư&#7901;ng nhưng ph&#7843;i đi xu&#7891;ng" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/16/screenshot-2024-04-16-005110-1713203504310109825731-0-0-665-1064-crop-1713229397269957359729.png" alt="Nh&#7919;ng ngày tri&#7873;u cư&#7901;ng: Có đư&#7901;ng nhưng ph&#7843;i đi xu&#7891;ng" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/ban-doc-lam-bao.htm" title="B&#7841;n đ&#7885;c làm báo">B&#7841;n đ&#7885;c làm báo</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240416000856916">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240416000856916"
+                        href="/nhung-ngay-trieu-cuong-co-duong-nhung-phai-di-xuong-20240416000856916.htm"
+                        title="Nh&#7919;ng ngày tri&#7873;u cư&#7901;ng: Có đư&#7901;ng nhưng ph&#7843;i đi xu&#7891;ng" >Những ngày triều cường: Có đường nhưng phải đi xuồng</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Mỗi khi triều cường, hơn 1.000 người dân tại ấp Bình Thạnh, xã Thanh Thới B (huyện Mỏ Cày Nam, tỉnh Bến Tre) lại phải bì bõm lội trên đường.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:10:40"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/chat-luong-la-muc-tieu-toi-thuong-20240416004146684.htm" title="Ch&#7845;t lư&#7907;ng là m&#7909;c tiêu t&#7889;i thư&#7907;ng" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/16/saigon-co-op-xay-dung-quy-trinh-kiem-soat-chat-luong-chuyen-nghiep-va-chat-che-1713197640045429056186-184-147-1333-1986-crop-1713202727963576055207.jpg" alt="Ch&#7845;t lư&#7907;ng là m&#7909;c tiêu t&#7889;i thư&#7907;ng" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/kinh-doanh.htm" title="Kinh doanh">Kinh doanh</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240416004146684">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240416004146684"
+                        href="/chat-luong-la-muc-tieu-toi-thuong-20240416004146684.htm"
+                        title="Ch&#7845;t lư&#7907;ng là m&#7909;c tiêu t&#7889;i thư&#7907;ng" >Chất lượng là mục tiêu tối thượng</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Liên hiệp Hợp tác xã Thương mại TP.HCM (Saigon Co.op) vừa tổ chức lễ phát động Tháng hành động vì an toàn thực phẩm năm 2024.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:00:00"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/diem-tin-8h-ca-mau-cong-bo-khan-cap-han-han-cap-hai-tiem-vang-bat-ngo-dong-cua-hang-loat-20240415220003093.htm" title="Đi&#7875;m tin 8h: Cà Mau công b&#7889; kh&#7849;n c&#7845;p h&#7841;n hán c&#7845;p 2; Ti&#7879;m vàng b&#7845;t ng&#7901; đóng c&#7917;a hàng lo&#7841;t" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/15/still0601-00000-17131928973511926770073-0-60-1080-1788-crop-1713192901647154886345.jpg" alt="Đi&#7875;m tin 8h: Cà Mau công b&#7889; kh&#7849;n c&#7845;p h&#7841;n hán c&#7845;p 2; Ti&#7879;m vàng b&#7845;t ng&#7901; đóng c&#7917;a hàng lo&#7841;t" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/can-biet.htm" title="C&#7847;n bi&#7871;t">C&#7847;n bi&#7871;t</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240415220003093">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240415220003093"
+                        href="/diem-tin-8h-ca-mau-cong-bo-khan-cap-han-han-cap-hai-tiem-vang-bat-ngo-dong-cua-hang-loat-20240415220003093.htm"
+                        title="Đi&#7875;m tin 8h: Cà Mau công b&#7889; kh&#7849;n c&#7845;p h&#7841;n hán c&#7845;p 2; Ti&#7879;m vàng b&#7845;t ng&#7901; đóng c&#7917;a hàng lo&#7841;t" >Điểm tin 8h: Cà Mau công bố khẩn cấp hạn hán cấp 2; Tiệm vàng bất ngờ đóng cửa hàng loạt</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Nhiều thông tin được cập nhật trong chương trình "Điểm tin cùng bạn 8h" hôm nay, ngày 16-4-2024.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:00:00"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/ra-mat-nhung-vien-kim-cuong-dat-gia-nhat-vung-dat-blue-zones-dau-tien-tai-viet-nam-20240415171222099.htm" title="Ra m&#7855;t &#8216;nh&#7919;ng viên kim cương&#8217; đ&#7855;t giá nh&#7845;t vùng đ&#7845;t Blue Zones đ&#7847;u tiên t&#7841;i Vi&#7879;t Nam" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/15/a1-17131754695091211714954-0-19-715-1163-crop-17131755070581327093297.jpg" alt="Ra m&#7855;t &#8216;nh&#7919;ng viên kim cương&#8217; đ&#7855;t giá nh&#7845;t vùng đ&#7845;t Blue Zones đ&#7847;u tiên t&#7841;i Vi&#7879;t Nam" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/kinh-doanh/doanh-nghiep.htm" title="Doanh nghi&#7879;p">Doanh nghi&#7879;p</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240415171222099">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240415171222099"
+                        href="/ra-mat-nhung-vien-kim-cuong-dat-gia-nhat-vung-dat-blue-zones-dau-tien-tai-viet-nam-20240415171222099.htm"
+                        title="Ra m&#7855;t &#8216;nh&#7919;ng viên kim cương&#8217; đ&#7855;t giá nh&#7845;t vùng đ&#7845;t Blue Zones đ&#7847;u tiên t&#7841;i Vi&#7879;t Nam" >Ra mắt ‘những viên kim cương’ đắt giá nhất vùng đất Blue Zones đầu tiên tại Việt Nam</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Phân khu quảng trường All Blue nằm tại trái tim Ecovillage Saigon River - vùng đất Blue Zones đầu tiên của Việt Nam được thiết kế 20 tiện ích giúp cư dân trị liệu giữa thiên nhiên, kích thích mỗi người vận động, tăng kết nối tình thân, cộng đồng.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:00:00"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/ra-mat-dong-san-pham-connected-home-ben-dong-song-mey-20240415114012222.htm" title="Ra m&#7855;t dòng s&#7843;n ph&#7849;m Connected Home bên dòng sông Mey" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/15/photo-1713155739832-17131557399361944728003-0-142-1126-1944-crop-17131558756311811805289.jpg" alt="Ra m&#7855;t dòng s&#7843;n ph&#7849;m Connected Home bên dòng sông Mey" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/nha-dat.htm" title="Nhà đ&#7845;t">Nhà đ&#7845;t</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240415114012222">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240415114012222"
+                        href="/ra-mat-dong-san-pham-connected-home-ben-dong-song-mey-20240415114012222.htm"
+                        title="Ra m&#7855;t dòng s&#7843;n ph&#7849;m Connected Home bên dòng sông Mey" >Ra mắt dòng sản phẩm Connected Home bên dòng sông Mey</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Cùng với sự phát triển của xã hội, tâm lý chọn nhà của cư dân thời đại mới có nhiều thay đổi. Một trong những sự khác biệt về tiêu chí chọn nhà của thế hệ mới chú trọng đến trải nghiệm sống, dòng sản phẩm Connected Home bên dòng sông Mey là như vậy.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T08:00:00"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/khach-hang-xuong-tien-mua-nha-pho-tai-binh-duong-20240412144401977.htm" title="Khách hàng &#8216;xu&#7889;ng ti&#7873;n&#8217; mua nhà ph&#7889; t&#7841;i Bình Dương" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/12/photo-1712907339806-17129073402552057448022-40-0-933-1429-crop-1712907443174791573253.jpg" alt="Khách hàng &#8216;xu&#7889;ng ti&#7873;n&#8217; mua nhà ph&#7889; t&#7841;i Bình Dương" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/nha-dat.htm" title="Nhà đ&#7845;t">Nhà đ&#7845;t</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240412144401977">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240412144401977"
+                        href="/khach-hang-xuong-tien-mua-nha-pho-tai-binh-duong-20240412144401977.htm"
+                        title="Khách hàng &#8216;xu&#7889;ng ti&#7873;n&#8217; mua nhà ph&#7889; t&#7841;i Bình Dương" >Khách hàng ‘xuống tiền’ mua nhà phố tại Bình Dương</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Tháng trước, chị Mai (40 tuổi), làm việc tại TP Tân Uyên vừa mua nhà phố biệt lập tại dự án The Standard khi chỉ cần trả trước hơn 500 triệu đồng.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T07:32:39"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/instagram-cua-trong-tai-bat-tran-u23-indonesia-thua-u23-qatar-phai-khoa-vi-bi-chui-qua-20240416070711479.htm" title="Instagram c&#7911;a tr&#7885;ng tài b&#7855;t tr&#7853;n U23 Indonesia thua U23 Qatar ph&#7843;i khóa vì b&#7883; ch&#7917;i quá" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/16/nasrullo-kabirov-1713226190730619644808-0-91-676-1173-crop-1713226194756742577609.jpeg" alt="Instagram c&#7911;a tr&#7885;ng tài b&#7855;t tr&#7853;n U23 Indonesia thua U23 Qatar ph&#7843;i khóa vì b&#7883; ch&#7917;i quá" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/the-thao.htm" title="Th&#7875; thao">Th&#7875; thao</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240416070711479">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240416070711479"
+                        href="/instagram-cua-trong-tai-bat-tran-u23-indonesia-thua-u23-qatar-phai-khoa-vi-bi-chui-qua-20240416070711479.htm"
+                        title="Instagram c&#7911;a tr&#7885;ng tài b&#7855;t tr&#7853;n U23 Indonesia thua U23 Qatar ph&#7843;i khóa vì b&#7883; ch&#7917;i quá" >Instagram của trọng tài bắt trận U23 Indonesia thua U23 Qatar phải khóa vì bị chửi quá</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Tài khoản Instagram của trọng tài Nasrullo Kabirov bắt chính trận U23 Indonesia thua U23 Qatar 0-2 đã bị các cổ động viên Indonesia tràn vào tấn công.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T07:30:34"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/3-xe-dien-vinfast-xuyen-dong-duong-hon-6-000km-trong-20-ngay-20240415131110656.htm" title="3 xe đi&#7879;n VinFast xuyên Đông Dương: Hơn 6.000km trong 20 ngày" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/15/dsc03239-17131581641681439109430-1713160253324-17131602534161495716131-84-0-1334-2000-crop-1713161408386140317152.jpg" alt="3 xe đi&#7879;n VinFast xuyên Đông Dương: Hơn 6.000km trong 20 ngày" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/xe.htm" title="Xe">Xe</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240415131110656">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240415131110656"
+                        href="/3-xe-dien-vinfast-xuyen-dong-duong-hon-6-000km-trong-20-ngay-20240415131110656.htm"
+                        title="3 xe đi&#7879;n VinFast xuyên Đông Dương: Hơn 6.000km trong 20 ngày" >3 xe điện VinFast xuyên Đông Dương: Hơn 6.000km trong 20 ngày</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Ba chiếc xe điện gồm VinFast VF 5 Plus, VF 8 và VF 9 đang thực hiện hành trình từ Hà Nội qua các nước Lào, Campuchia và đến TP.HCM, sau đó xuyên Việt để trở về điểm xuất phát.</p>
+        </div>
+    </div>
+
+    <div class="box-category-item">
+        <span class="time-ago-last-news" title="2024-04-16T07:25:47"></span>
+        <a class="box-category-link-with-avatar img-resize"
+            data-type="0"
+            data-newstype="0"
+            href="/moi-lo-israel-danh-vao-co-so-hat-nhan-iran-20240416072113724.htm" title="M&#7889;i lo Israel đánh vào cơ s&#7903; h&#7841;t nhân Iran" >
+            <img data-type="avatar"   src="https://cdn.tuoitre.vn/zoom/260_163/471584752817336320/2024/4/16/2024-04-15t220854z1616099113rc26k6afb57mrtrmadp3israel-palestinians-iran-nuclear-17132260838311348351368-44-0-1294-2000-crop-171322616432969193822.jpg" alt="M&#7889;i lo Israel đánh vào cơ s&#7903; h&#7841;t nhân Iran" class="box-category-avatar">
+            
+        </a>
+        <div class="box-category-content">
+            <a class="box-category-category" href="/the-gioi.htm" title="Th&#7871; gi&#7899;i">Th&#7871; gi&#7899;i</a>
+            <div class="box-content-title">
+                <h3 class="box-title-text" data-comment="20240416072113724">
+                    <a class="box-category-link-title" data-objecttype=""
+                        data-type="0"
+                        data-linktype="newsdetail"
+                        data-newstype="0"
+                        data-id="20240416072113724"
+                        href="/moi-lo-israel-danh-vao-co-so-hat-nhan-iran-20240416072113724.htm"
+                        title="M&#7889;i lo Israel đánh vào cơ s&#7903; h&#7841;t nhân Iran" >Mối lo Israel đánh vào cơ sở hạt nhân Iran</a>
+                </h3>
+            </div>
+            <p data-type="sapo" class="box-category-sapo need-trimline" rel="3">Tổng giám đốc Cơ quan Năng lượng nguyên tử quốc tế (IAEA) nêu lo ngại về việc Israel có thể nhắm mục tiêu vào các cơ sở hạt nhân của Iran.</p>
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+</div>
+</div>
+
+<div class="wrapPopup" id="infoForm">
+<div class="popup">
+    <div class="centerPopup">
+        <section>
+            <header>
+                <p>Thông tin của bạn</p>
+                <a href="#" title="Đóng" class="closepp" onclick="comment.closePopup('infoForm')"></a>
+            </header>
+            <div class="content">
+                <div class="frm-1" id="frm-comment">
+                    <div class="form-group">
+                        <span>Email</span>
+                        <input id="cm-email" name="cm-email" type="email" class="form-control" placeholder="E-mail (*)">
+                        <p class="warning email-warning1">Vui lòng nhập Email</p>
+                        <p class="warning email-warning2">Email Không đúng định dạng</p>
+                    </div>
+                    <div class="form-group">
+                        <span>Họ và tên</span>
+                        <input id="cm-name" type="text" name="cm-name" class="form-control" placeholder="Họ &amp; tên (*)">
+                        <p class="warning name-warning">Vui lòng nhập Họ &amp; Tên.</p>
+                    </div>
+                    
+
+                    <div class="form-group clboth">
+                        <button type="button" id="btn-info" name="btn-info" class="btn btn-danger">Gửi bình luận</button>
+                        <input type="hidden" id="cm-content" name="cm-content" value="" />
+                        
+                        <input type="hidden" id="cm-pid" name="cm-pid" value="0" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+</div>
+<div class="wrapPopup" id="errorForm">
+<div class="popup">
+    <div class="centerPopup">
+        <section>
+            <header>
+                <p>Thông báo</p>
+                <a href="#" title="Đóng" class="closepp" onclick="closePopup('errorForm')"></a>
+            </header>
+            <div class="content">
+                Bạn vui lòng đợi <span class="timeout">0</span>s để tiếp tục comment
+            </div>
+        </section>
+    </div>
+</div>
+</div>
+<div class="wrapPopup" id="successForm">
+<div class="popup">
+    <div class="centerPopup">
+        <section>
+            <header>
+                <p>Thông báo</p>
+                <a href="#" title="Đóng" class="closepp" onclick="comment.closePopup('successForm')"></a>
+            </header>
+            <div class="content">
+                Bình luận được gửi thành công
+            </div>
+        </section>
+    </div>
+</div>
+</div>
+
+
+                </a>
+            </div>
+        </div>
+        <div class="action_modal">
+            <a href="javascript:;" rel="nofollow" title="Hủy bỏ" class="close-modal">Hủy bỏ
+            </a>
+            <a href="javascript:;" rel="nofollow" title="Hoàn tất" class="submit btnSendQA">Hoàn tất
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+
+            </div>
+        </div>
 </body>
 </html>
+
