@@ -12,10 +12,10 @@
     right: 0;
     z-index: 1;
 }
- #main-menu li {
+#nav li {
     display: inline-block;
 }
- #main-menu li a {
+#nav li a {
     color: #fff;
     text-decoration: none;
     line-height: 46px;
@@ -23,15 +23,10 @@
     display: inline-block;
     text-transform: uppercase;
 }
- #main-menu li:hover a {
+#nav li:hover a {
     color: #000;
     background-color: #fff;
 }
-@media screen and (max-width: 768px) {
-    #main-menu {
-        flex-direction: column;
-        text-align: center;
-    }}
 #searchForm {
     display: flex;
     justify-content: center;
@@ -113,7 +108,3 @@ button:hover {
 .btn button:hover {
     background-color: #0056b3;
 } 
-
-
-
-    
