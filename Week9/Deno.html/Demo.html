@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets.js"></script>
+</head>
+<body>
+    <div class="banner">
+        <div>
+            <a>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxG_yD1s8AdmKFvi6tz1fETTNXFEM8jHs0f-Dl2PA7-w&s"
+                height = "20rem">
+
+            </a>
+            <a id="time-now" class="nor-heading">
+
+            </a>
+            <script>
+                var today = new Date();
+                var date = today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear();
+                document.getElementById("time-now").innerHTML = date;  
+            </script>
+            <a class="nor-heading">Hỗ trợ</a>
+        </div>
+        <div>
+            <a>Tin mới nhất</a>
+            <a>Tin theo khu vực</a>
+            <a><ion-icon name="person-outline"></ion-icon></a>
+        </div>
+    </div>
+    <div class="banner-span">
+        
+    </div>
+    <div class="nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="#business">Kinh doanh</a>
+        <a href="#sport">Thể thao</a>
+        <a href="#law">Pháp luật</a>
+        <a href="#world">Thế giới</a>
+            
+        
+        <a href="/search.html">Tìm kiếm</a>
+        <a href="/contact.html">Liên hệ</a>
+    </div>
+    <div class="wrapper">
