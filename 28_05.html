@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Counter Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #111827;
+    }
+    .count {
+      font-size: 30px;
+      color: green;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .in {
+      background-color: #10b981;
+      color: white;
+    }
+    .out {
+      background-color: #ef4444;
+      color: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f9fafb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Customer Counter</h1>
+    <div class="count" id="current-count">Loading...</div>
+
+    <div class="btn-group">
+      <button class="in" onclick="updateCount('in')">Khách Vào</button>
+      <button class="out" onclick="updateCount('out')">Khách Ra</button>
+    </div>
+
+    <h3>Lịch sử khách ra vào</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Thời gian</th>
+          <th>Hành động</th>
+          <th>Sau cập nhật</th>
+        </tr>
+      </thead>
+      <tbody id="log-table"></tbody>
+    </table>
+  </div>
+
+  <script>
+    let currentCount = localStorage.getItem("count") ? parseInt(localStorage.getItem("count")) : 0;
+    let logs = JSON.parse(localStorage.getItem("logs")) || [];
+
+    function render() {
+      document.getElementById("current-count").textContent = `Số khách hiện tại: ${currentCount}`;
+      const table = document.getElementById("log-table");
+      table.innerHTML = logs.slice(-20).reverse().map(log => `
+        <tr>
+          <td>${log.time}</td>
+          <td>${log.direction}</td>
+          <td>${log.total}</td>
+        </tr>
+      `).join('');
+    }
+
+    function updateCount(direction) {
+      if (direction === "in") {
+        currentCount++;
+      } else if (direction === "out") {
+        currentCount = Math.max(0, currentCount - 1);
+      }
+
+      const log = {
+        time: new Date().toLocaleString(),
+        direction: direction === "in" ? "Vào" : "Ra",
+        total: currentCount
+      };
+
+      logs.push(log);
+      localStorage.setItem("count", currentCount);
+      localStorage.setItem("logs", JSON.stringify(logs));
+
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>
