@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FLASH BROTHER BANK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3c6c;
+            --primary-light: #2d5a9a;
+            --secondary: #ff9800;
+            --success: #4caf50;
+            --danger: #f44336;
+            --light: #f5f7fa;
+            --dark: #333;
+            --gray: #888;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-info .role {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 0;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .balance-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .balance-card h3 {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .balance-amount {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 10px 0;
+        }
+
+        .slogan {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .action-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .action-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(26, 60, 108, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: var(--primary);
+        }
+
+        .action-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .action-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .action-card:hover .action-btn {
+            background: var(--primary-light);
+        }
+
+        /* Features Section */
+        .features-section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 26px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-header i {
+            font-size: 24px;
+        }
+
+        .feature-body {
+            padding: 25px;
+        }
+
+        .feature-body h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feature-body p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        /* Deposit Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 22px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-light);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 60, 108, 0.1);
+        }
+
+        .term-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .term-option {
+            background: var(--light);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .term-option:hover, .term-option.selected {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .term-option h4 {
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .term-option .rate {
+            font-size: 14px;
+            color: var(--success);
+        }
+
+        .term-option.selected .rate {
+            color: var(--white);
+        }
+
+        .modal-footer {
+            padding: 20px;
+            background: #f9f9f9;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn-secondary {
+            background: #ddd;
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        /* Page transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .page-transition i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .page-transition h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .page-transition p {
+            max-width: 500px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1100;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: var(--success);
+        }
+        
+        .notification.error {
+            background: var(--danger);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 24px;
+            }
+            
+            .balance-amount {
+                font-size: 28px;
+            }
+            
+            .section-header h2 {
+                font-size: 22px;
+            }
+            
+            .term-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .balance-card {
+                padding: 20px;
+            }
+            
+            .action-card, .feature-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText"></span>
+    </div>
+
+    <!-- Deposit Modal -->
+    <div class="modal" id="depositModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-piggy-bank"></i> Gửi tiết kiệm</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="depositAmount">Số tiền gửi (USD)</label>
+                    <input type="number" id="depositAmount" class="form-control" placeholder="Nhập số tiền bạn muốn gửi">
+                </div>
+                
+                <div class="form-group">
+                    <label>Chọn kỳ hạn</label>
+                    <div class="term-options">
+                        <div class="term-option" data-term="6" data-rate="5.5">
+                            <h4>6 tháng</h4>
+                            <div class="rate">Lãi suất: 5.5%/năm</div>
+                        </div>
+                        <div class="term-option" data-term="12" data-rate="6.2">
+                            <h4>12 tháng</h4>
+                            <div class="rate">Lãi suất: 6.2%/năm</div>
+                        </div>
+                        <div class="term-option" data-term="24" data-rate="6.8">
+                            <h4>2 năm</h4>
+                            <div class="rate">Lãi suất: 6.8%/năm</div>
+                        </div>
+                        <div class="term-option" data-term="60" data-rate="7.5">
+                            <h4>5 năm</h4>
+                            <div class="rate">Lãi suất: 7.5%/năm</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="depositNote">Ghi chú (nếu có)</label>
+                    <textarea id="depositNote" class="form-control" rows="3" placeholder="Nhập ghi chú..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelDeposit">Hủy bỏ</button>
+                <button class="btn btn-primary" id="confirmDeposit">Xác nhận gửi tiền</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page transition overlay -->
+    <div class="page-transition" id="pageTransition">
+        <i class="fas fa-circle-notch"></i>
+        <h2 id="transitionTitle">Đang chuyển hướng</h2>
+        <p id="transitionMessage">Vui lòng chờ trong giây lát...</p>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="navigateTo('dashboard.html')">
+                    <i class="fas fa-university"></i>
+                    <h1>FLASH <span>BROTHER</span> BANK</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm dịch vụ...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="name">Joyce-Johnston</div>
+                        <div class="role">Khách hàng cá nhân</div>
+                    </div>
+                    <div class="user-avatar">NV</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <h2>Chào mừng trở lại, Joyce-Johnston</h2>
+                <div class="balance-card">
+                    <h3><i class="fas fa-wallet"></i> Số dư hiện tại của bạn</h3>
+                    <div class="balance-amount" id="currentBalance">42.000 USD</div>
+                    <p class="slogan">Cung cấp dịch vụ ngân hàng đẳng cấp thế giới</p>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <div class="action-card" onclick="navigateTo('depositmoneyintoaccount.html')">
+                    <div class="action-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Nạp tiền</h3>
+                    <p>Nạp tiền vào tài khoản nhanh chóng và an toàn</p>
+                    <div class="action-btn">Nạp tiền ngay</div>
+                </div>
+                
+                <div class="action-card" onclick="navigateTo('withdraw.html')">
+                    <div class="action-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Rút tiền</h3>
+                    <p>Rút tiền mặt tại bất kỳ chi nhánh nào của chúng tôi</p>
+                    <div class="action-btn">Rút tiền ngay</div>
+                </div>
+                
+                <div class="action-card" onclick="navigateTo('history.html')">
+                    <div class="action-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Lịch sử giao dịch</h3>
+                    <p>Xem toàn bộ lịch sử giao dịch của bạn</p>
+                    <div class="action-btn">Xem lịch sử</div>
+                </div>
+                
+                <div class="action-card" id="openDepositModal">
+                    <div class="action-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>Gửi tiết kiệm</h3>
+                    <p>Gửi tiền tiết kiệm với lãi suất hấp dẫn</p>
+                    <div class="action-btn">Gửi ngay</div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <div class="section-header">
+                    <h2>Dịch vụ của chúng tôi</h2>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card" id="openDepositModal2">
+                        <div class="feature-header">
+                            <i class="fas fa-piggy-bank"></i>
+                            <h3>Gửi tiết kiệm</h3>
+                        </div>
+                        <div class="feature-body">
+                            <p>Gửi tiền tiết kiệm với nhiều kỳ hạn và lãi suất hấp dẫn</p>
+                            <button class="btn btn-primary">Gửi tiền</button>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card" onclick="navigateTo('history.html')">
+                        <div class="feature-header">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <h3>Lịch sử giao dịch</h3>
+                        </div>
+                        <div class="feature-body">
+                            <p>Xem lại tất cả các giao dịch trong quá khứ của bạn</p>
+                            <button class="btn btn-primary">Xem lịch sử</button>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card" onclick="navigateTo('loan.html')">
+                        <div class="feature-header">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            <h3>Khoản vay đặc biệt</h3>
+                        </div>
+                        <div class="feature-body">
+                            <p>Đăng ký khoản vay đặc biệt với lãi suất tốt nhất</p>
+                            <button class="btn btn-primary">Đăng ký ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <p>FLASH BROTHER BANK cam kết mang đến những dịch vụ ngân hàng hiện đại, an toàn và tiện lợi nhất cho khách hàng.</p>
+                    <p><i class="fas fa-phone"></i> 0347 255 626</p>
+                    <p><i class="fas fa-envelope"></i> anhhuydeptrai123@gmail.com</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Dịch vụ</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateTo('depositmoneyintoaccount.html')"><i class="fas fa-chevron-right"></i> Nạp tiền</a></li>
+                        <li><a href="#" onclick="navigateTo('withdraw.html')"><i class="fas fa-chevron-right"></i> Rút tiền</a></li>
+                        <li><a href="#" onclick="navigateTo('history.html')"><i class="fas fa-chevron-right"></i> Lịch sử giao dịch</a></li>
+                        <li><a href="#" id="footerDeposit"><i class="fas fa-chevron-right"></i> Gửi tiết kiệm</a></li>
+                        <li><a href="#" onclick="navigateTo('loan.html')"><i class="fas fa-chevron-right"></i> Vay tiền</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Hỗ trợ</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Câu hỏi thường gặp</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Liên hệ hỗ trợ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chi nhánh ngân hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kết nối với chúng tôi</h3>
+                    <p>Theo dõi chúng tôi trên các mạng xã hội để cập nhật thông tin mới nhất</p>
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 15px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 FLASH BROTHER BANK | <a href="#" style="color: var(--secondary);">Chính sách bảo mật</a> | <a href="#" style="color: var(--secondary);">Điều khoản dịch vụ</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hàm chuyển hướng trang
+        function navigateTo(page) {
+            const transition = document.getElementById('pageTransition');
+            const title = document.getElementById('transitionTitle');
+            const message = document.getElementById('transitionMessage');
+            
+            // Hiển thị màn hình chuyển tiếp
+            transition.classList.add('active');
+            
+            // Đặt tiêu đề và thông báo tùy theo trang
+            switch(page) {
+                case 'depositmoneyintoaccount.html':
+                    title.textContent = 'Nạp tiền';
+                    message.textContent = 'Đang chuyển đến trang nạp tiền...';
+                    break;
+                case 'withdraw.html':
+                    title.textContent = 'Rút tiền';
+                    message.textContent = 'Đang chuyển đến trang rút tiền...';
+                    break;
+                case 'history.html':
+                    title.textContent = 'Lịch sử giao dịch';
+                    message.textContent = 'Đang chuyển đến trang lịch sử giao dịch...';
+                    break;
+                case 'deposit.html':
+                    title.textContent = 'Gửi tiết kiệm';
+                    message.textContent = 'Đang chuyển đến trang gửi tiết kiệm...';
+                    break;
+                case 'loan.html':
+                    title.textContent = 'Vay tiền';
+                    message.textContent = 'Đang chuyển đến trang vay tiền...';
+                    break;
+                case 'dashboard.html':
+                    title.textContent = 'Trang chủ';
+                    message.textContent = 'Đang chuyển về trang chủ...';
+                    break;
+                default:
+                    title.textContent = 'Đang chuyển hướng';
+                    message.textContent = 'Vui lòng chờ trong giây lát...';
+            }
+            
+            // Chuyển hướng sau 1.5 giây
+            setTimeout(() => {
+                window.location.href = page;
+            }, 1500);
+        }
+        
+        // Cập nhật số dư từ localStorage khi trang tải
+        document.addEventListener('DOMContentLoaded', function() {
+            const balanceElement = document.getElementById('currentBalance');
+            let storedBalance = localStorage.getItem('bankBalance');
+            
+            // Nếu chưa có trong localStorage, tạo giá trị mặc định
+            if (storedBalance === null) {
+                storedBalance = 42000;
+                localStorage.setItem('bankBalance', storedBalance);
+            }
+            
+            // Format số tiền: thêm dấu phân cách hàng nghìn và 2 chữ số thập phân
+            balanceElement.textContent = parseFloat(storedBalance).toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + ' USD';
+        });
+        
+        // Hiển thị thông báo
+        function showNotification(message, isSuccess = true) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.className = `notification ${isSuccess ? 'success' : 'error'} show`;
+            
+            // Ẩn thông báo sau 3 giây
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Xử lý modal gửi tiết kiệm
+        const depositModal = document.getElementById('depositModal');
+        const openDepositModal = document.getElementById('openDepositModal');
+        const openDepositModal2 = document.getElementById('openDepositModal2');
+        const footerDeposit = document.getElementById('footerDeposit');
+        const closeModal = document.getElementById('closeModal');
+        const cancelDeposit = document.getElementById('cancelDeposit');
+        const confirmDeposit = document.getElementById('confirmDeposit');
+        const depositAmount = document.getElementById('depositAmount');
+        const termOptions = document.querySelectorAll('.term-option');
+        
+        // Mở modal khi nhấn vào các phần tử gửi tiết kiệm
+        [openDepositModal, openDepositModal2, footerDeposit].forEach(element => {
+            element.addEventListener('click', () => {
+                depositModal.style.display = 'flex';
+                // Reset form
+                depositAmount.value = '';
+                document.getElementById('depositNote').value = '';
+                termOptions.forEach(option => option.classList.remove('selected'));
+            });
+        });
+        
+        // Đóng modal
+        [closeModal, cancelDeposit].forEach(element => {
+            element.addEventListener('click', () => {
+                depositModal.style.display = 'none';
+            });
+        });
+        
+        // Chọn kỳ hạn
+        termOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Bỏ chọn tất cả
+                termOptions.forEach(o => o.classList.remove('selected'));
+                // Chọn kỳ hạn này
+                option.classList.add('selected');
+            });
+        });
+        
+        // Xác nhận gửi tiền
+        confirmDeposit.addEventListener('click', () => {
+            const amount = parseFloat(depositAmount.value);
+            const selectedTerm = document.querySelector('.term-option.selected');
+            
+            if (isNaN(amount) || amount <= 0) {
+                showNotification('Vui lòng nhập số tiền hợp lệ!', false);
+                return;
+            }
+            
+            if (!selectedTerm) {
+                showNotification('Vui lòng chọn kỳ hạn gửi tiền!', false);
+                return;
+            }
+            
+            const currentBalance = parseFloat(localStorage.getItem('bankBalance'));
+            
+            if (amount > currentBalance) {
+                showNotification('Số dư tài khoản không đủ để thực hiện giao dịch!', false);
+                return;
+            }
+            
+            // Trừ tiền từ tài khoản chính
+            const newBalance = currentBalance - amount;
+            localStorage.setItem('bankBalance', newBalance);
+            
+            // Cập nhật số dư hiển thị
+            document.getElementById('currentBalance').textContent = 
+                newBalance.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) + ' USD';
+            
+            // Lấy thông tin kỳ hạn
+            const term = selectedTerm.dataset.term;
+            const rate = selectedTerm.dataset.rate;
+            
+            // Tạo sổ tiết kiệm (lưu vào localStorage)
+            const depositId = 'DP' + Date.now();
+            const deposit = {
+                id: depositId,
+                amount: amount,
+                term: term,
+                rate: rate,
+                startDate: new Date().toISOString(),
+                note: document.getElementById('depositNote').value || 'Gửi tiết kiệm kỳ hạn ' + term + ' tháng'
+            };
+            
+            // Lưu sổ tiết kiệm vào localStorage
+            let deposits = JSON.parse(localStorage.getItem('savingsDeposits')) || [];
+            deposits.push(deposit);
+            localStorage.setItem('savingsDeposits', JSON.stringify(deposits));
+            
+            // Hiển thị thông báo thành công
+            showNotification(`Gửi tiết kiệm thành công ${amount.toLocaleString('en-US')} USD kỳ hạn ${term} tháng!`);
+            
+            // Đóng modal
+            depositModal.style.display = 'none';
+        });
+        
+        // Đóng modal khi nhấn ra ngoài
+        window.addEventListener('click', (event) => {
+            if (event.target === depositModal) {
+                depositModal.style.display = 'none';
+            }
+        });
+        
+        // Simple animation for buttons
+        document.querySelectorAll('.btn, .action-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Feature cards animation
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.querySelector('.feature-header').style.background = 'var(--primary-light)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.querySelector('.feature-header').style.background = 'var(--primary)';
+            });
+        });
+        
+        // Action cards animation
+        document.querySelectorAll('.action-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

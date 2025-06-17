@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nạp Tiền - FLASH BROTHER BANK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <style>
+        :root {
+            --primary: #1a3c6c;
+            --primary-light: #2d5a9a;
+            --secondary: #ff9800;
+            --success: #4caf50;
+            --danger: #f44336;
+            --light: #f5f7fa;
+            --dark: #333;
+            --gray: #888;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-info .role {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+        
+        .btn-success:hover {
+            background: #3d8b40;
+        }
+        
+        .btn-lg {
+            padding: 12px 30px;
+            font-size: 18px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 0;
+            flex: 1;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .current-balance {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            max-width: 300px;
+            margin: 0 auto 30px;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .current-balance h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .current-balance .balance-amount {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .deposit-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .deposit-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .deposit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .form-group input, .form-group select {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 60, 108, 0.1);
+        }
+        
+        .amount-input {
+            position: relative;
+        }
+        
+        .amount-input input {
+            padding-left: 40px;
+        }
+        
+        .currency-symbol {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .payment-method {
+            flex: 1;
+            min-width: 120px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .payment-method i {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .payment-method:hover, .payment-method.active {
+            border-color: var(--primary);
+            background: rgba(26, 60, 108, 0.05);
+        }
+        
+        .payment-method.active {
+            border: 2px solid var(--primary);
+        }
+        
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px solid #eee;
+        }
+        
+        .qr-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .qr-code-container {
+            width: 200px;
+            height: 200px;
+            background: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        #qrCode {
+            width: 180px;
+            height: 180px;
+        }
+        
+        .qr-instructions {
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+            max-width: 300px;
+        }
+        
+        .deposit-summary {
+            background: rgba(26, 60, 108, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            color: var(--gray);
+        }
+        
+        .summary-value {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .summary-total {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        .confirmation {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 15px;
+            border: 1px solid var(--success);
+        }
+        
+        .confirmation i {
+            font-size: 60px;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        .confirmation h3 {
+            font-size: 24px;
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+        
+        .confirmation p {
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .transaction-details {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+        
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        
+        .transaction-label {
+            font-weight: 500;
+            color: var(--gray);
+        }
+        
+        .transaction-value {
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .transaction-total {
+            border-top: 2px solid #eee;
+            padding-top: 10px;
+            margin-top: 5px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        /* Page transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .page-transition i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .page-transition h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .page-transition p {
+            max-width: 500px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .deposit-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page transition overlay -->
+    <div class="page-transition" id="pageTransition">
+        <i class="fas fa-circle-notch"></i>
+        <h2 id="transitionTitle">Đang chuyển hướng</h2>
+        <p id="transitionMessage">Vui lòng chờ trong giây lát...</p>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="navigateTo('dashboard.html')">
+                    <i class="fas fa-university"></i>
+                    <h1>FLASH <span>BROTHER</span> BANK</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm dịch vụ...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="name">Joyce-Johnston</div>
+                        <div class="role">Khách hàng cá nhân</div>
+                    </div>
+                    <div class="user-avatar">NV</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <h1 class="page-title">Nạp Tiền Vào Tài Khoản</h1>
+            
+            <!-- Hiển thị số dư hiện tại -->
+            <div class="current-balance">
+                <h3><i class="fas fa-wallet"></i> Số dư hiện tại</h3>
+                <div class="balance-amount" id="currentBalanceDisplay">$42,000.00</div>
+            </div>
+            
+            <div class="deposit-container">
+                <div class="deposit-form">
+                    <div class="form-group">
+                        <label for="amount">Số tiền nạp (USD)</label>
+                        <div class="amount-input">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="amount" min="1" step="1" placeholder="Nhập số tiền" value="100">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phương thức thanh toán</label>
+                        <div class="payment-methods">
+                            <div class="payment-method active" data-method="bank">
+                                <i class="fas fa-building-columns"></i>
+                                <div>Chuyển khoản</div>
+                            </div>
+                            <div class="payment-method" data-method="card">
+                                <i class="fas fa-credit-card"></i>
+                                <div>Thẻ ngân hàng</div>
+                            </div>
+                            <div class="payment-method" data-method="ewallet">
+                                <i class="fas fa-wallet"></i>
+                                <div>Ví điện tử</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bank">Ngân hàng</label>
+                        <select id="bank">
+                            <option value="vcb">Vietcombank</option>
+                            <option value="bidv">BIDV</option>
+                            <option value="agb">Agribank</option>
+                            <option value="vpb">VPBank</option>
+                            <option value="tcb">Techcombank</option>
+                        </select>
+                    </div>
+                    
+                    <div class="deposit-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">Số tiền nạp:</span>
+                            <span class="summary-value" id="depositAmount">$100</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Phí giao dịch:</span>
+                            <span class="summary-value" id="feeAmount">$0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Tổng cộng:</span>
+                            <span class="summary-value summary-total" id="totalAmount">$100.00</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg" id="depositBtn">
+                        <i class="fas fa-coins"></i> Xác nhận nạp tiền
+                    </button>
+                </div>
+                
+                <div class="qr-section">
+                    <h3 class="qr-title">Quét mã QR để thanh toán</h3>
+                    <div class="qr-code-container">
+                        <div id="qrCode"></div>
+                    </div>
+                    <p class="qr-instructions">
+                        Sử dụng ứng dụng ngân hàng trên điện thoại để quét mã QR và hoàn tất thanh toán
+                    </p>
+                    <div class="qr-instructions">
+                        <i class="fas fa-info-circle"></i> Mã QR sẽ tự động cập nhật khi bạn thay đổi số tiền
+                    </div>
+                </div>
+            </div>
+            
+            <div class="confirmation" id="confirmation">
+                <i class="fas fa-check-circle"></i>
+                <h3>Nạp tiền thành công!</h3>
+                <p>Số tiền đã được cộng vào tài khoản của bạn</p>
+                
+                <div class="transaction-details">
+                    <div class="transaction-item">
+                        <span class="transaction-label">Số tiền:</span>
+                        <span class="transaction-value" id="confirmAmount">$100.00</span>
+                    </div>
+                    <div class="transaction-item">
+                        <span class="transaction-label">Phí giao dịch:</span>
+                        <span class="transaction-value" id="confirmFee">$0.00</span>
+                    </div>
+                    <div class="transaction-item">
+                        <span class="transaction-label">Số dư trước:</span>
+                        <span class="transaction-value" id="oldBalance">$42,000.00</span>
+                    </div>
+                    <div class="transaction-item">
+                        <span class="transaction-label">Số dư mới:</span>
+                        <span class="transaction-value" id="newBalance">$42,100.00</span>
+                    </div>
+                    <div class="transaction-item transaction-total">
+                        <span class="transaction-label">Tổng cộng:</span>
+                        <span class="transaction-value" id="confirmTotal">$100.00</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center;">
+                    <button class="btn btn-outline" onclick="navigateTo('dashboard.html')">
+                        <i class="fas fa-home"></i> Về trang chủ
+                    </button>
+                    <button class="btn btn-primary" onclick="navigateTo('history.html')">
+                        <i class="fas fa-history"></i> Xem lịch sử
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <p>FLASH BROTHER BANK cam kết mang đến những dịch vụ ngân hàng hiện đại, an toàn và tiện lợi nhất cho khách hàng.</p>
+                    <p><i class="fas fa-phone"></i> 0347 255 626</p>
+                    <p><i class="fas fa-envelope"></i> anhhuydeptrai123@gmail.com</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Dịch vụ</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateTo('depositmoneyintoaccount.html')"><i class="fas fa-chevron-right"></i> Nạp tiền</a></li>
+                        <li><a href="#" onclick="navigateTo('withdraw.html')"><i class="fas fa-chevron-right"></i> Rút tiền</a></li>
+                        <li><a href="#" onclick="navigateTo('history.html')"><i class="fas fa-chevron-right"></i> Lịch sử giao dịch</a></li>
+                        <li><a href="#" onclick="navigateTo('deposit.html')"><i class="fas fa-chevron-right"></i> Gửi tiết kiệm</a></li>
+                        <li><a href="#" onclick="navigateTo('loan.html')"><i class="fas fa-chevron-right"></i> Vay tiền</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Hỗ trợ</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Câu hỏi thường gặp</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Liên hệ hỗ trợ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chi nhánh ngân hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kết nối với chúng tôi</h3>
+                    <p>Theo dõi chúng tôi trên các mạng xã hội để cập nhật thông tin mới nhất</p>
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 15px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 FLASH BROTHER BANK | <a href="#" style="color: var(--secondary);">Chính sách bảo mật</a> | <a href="#" style="color: var(--secondary);">Điều khoản dịch vụ</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hàm chuyển hướng trang
+        function navigateTo(page) {
+            const transition = document.getElementById('pageTransition');
+            const title = document.getElementById('transitionTitle');
+            const message = document.getElementById('transitionMessage');
+            
+            // Hiển thị màn hình chuyển tiếp
+            transition.classList.add('active');
+            
+            // Đặt tiêu đề và thông báo tùy theo trang
+            switch(page) {
+                case 'depositmoneyintoaccount.html':
+                    title.textContent = 'Nạp tiền';
+                    message.textContent = 'Đang chuyển đến trang nạp tiền...';
+                    break;
+                case 'withdraw.html':
+                    title.textContent = 'Rút tiền';
+                    message.textContent = 'Đang chuyển đến trang rút tiền...';
+                    break;
+                case 'history.html':
+                    title.textContent = 'Lịch sử giao dịch';
+                    message.textContent = 'Đang chuyển đến trang lịch sử giao dịch...';
+                    break;
+                case 'deposit.html':
+                    title.textContent = 'Gửi tiết kiệm';
+                    message.textContent = 'Đang chuyển đến trang gửi tiết kiệm...';
+                    break;
+                case 'loan.html':
+                    title.textContent = 'Vay tiền';
+                    message.textContent = 'Đang chuyển đến trang vay tiền...';
+                    break;
+                case 'dashboard.html':
+                    title.textContent = 'Trang chủ';
+                    message.textContent = 'Đang chuyển về trang chủ...';
+                    break;
+                default:
+                    title.textContent = 'Đang chuyển hướng';
+                    message.textContent = 'Vui lòng chờ trong giây lát...';
+            }
+            
+            // Chuyển hướng sau 1.5 giây
+            setTimeout(() => {
+                window.location.href = page;
+            }, 1500);
+        }
+        
+        // Hàm lấy số dư hiện tại
+        function getCurrentBalance() {
+            const storedBalance = localStorage.getItem('bankBalance');
+            if (storedBalance === null) {
+                // Nếu chưa có, khởi tạo là 42000
+                localStorage.setItem('bankBalance', '42000');
+                return 42000;
+            }
+            return parseFloat(storedBalance);
+        }
+        
+        // Hàm cập nhật số dư mới
+        function updateBalance(newBalance) {
+            localStorage.setItem('bankBalance', newBalance.toString());
+            return newBalance;
+        }
+        
+        // Hàm định dạng tiền tệ
+        function formatCurrency(amount) {
+            return amount.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+        
+        // Khởi tạo trang nạp tiền
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hiển thị số dư hiện tại
+            const currentBalance = getCurrentBalance();
+            document.getElementById('currentBalanceDisplay').textContent = '$' + formatCurrency(currentBalance);
+            
+            // Tạo mã QR ban đầu
+            generateQRCode(100);
+            
+            // Cập nhật số tiền khi người dùng thay đổi
+            const amountInput = document.getElementById('amount');
+            amountInput.addEventListener('input', function() {
+                updateAmounts();
+                generateQRCode(parseFloat(amountInput.value) || 100);
+            });
+            
+            // Xử lý chọn phương thức thanh toán
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Xử lý nút nạp tiền
+            const depositBtn = document.getElementById('depositBtn');
+            depositBtn.addEventListener('click', function() {
+                const amount = parseFloat(amountInput.value) || 100;
+                const fee = 0;
+                const total = amount + fee;
+                
+                // Lấy số dư hiện tại
+                const currentBalance = getCurrentBalance();
+                
+                // Lưu lại số dư cũ để hiển thị
+                const oldBalance = currentBalance;
+                
+                // Cập nhật số dư mới
+                const newBalance = updateBalance(currentBalance + amount);
+                
+                // Hiển thị thông tin xác nhận
+                document.getElementById('confirmAmount').textContent = '$' + formatCurrency(amount);
+                document.getElementById('confirmFee').textContent = '$' + formatCurrency(fee);
+                document.getElementById('oldBalance').textContent = '$' + formatCurrency(oldBalance);
+                document.getElementById('newBalance').textContent = '$' + formatCurrency(newBalance);
+                document.getElementById('confirmTotal').textContent = '$' + formatCurrency(total);
+                
+                // Cập nhật số dư hiện tại trên trang
+                document.getElementById('currentBalanceDisplay').textContent = '$' + formatCurrency(newBalance);
+                
+                // Hiển thị màn hình xác nhận
+                document.getElementById('confirmation').style.display = 'block';
+                document.querySelector('.deposit-form').style.display = 'none';
+                document.querySelector('.qr-section').style.display = 'none';
+                
+                // Thêm giao dịch vào lịch sử
+                addTransactionToHistory({
+                    id: 'TX' + Date.now(),
+                    type: 'deposit',
+                    amount: amount,
+                    fee: fee,
+                    date: new Date().toISOString(),
+                    description: 'Nạp tiền vào tài khoản'
+                });
+            });
+        });
+        
+        // Hàm thêm giao dịch vào lịch sử
+        function addTransactionToHistory(transaction) {
+            let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+            transactions.push(transaction);
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+        }
+        
+        // Hàm cập nhật số tiền hiển thị
+        function updateAmounts() {
+            const amount = parseFloat(document.getElementById('amount').value) || 100;
+            const fee = 0;
+            const total = amount + fee;
+            
+            document.getElementById('depositAmount').textContent = '$' + formatCurrency(amount);
+            document.getElementById('feeAmount').textContent = '$' + formatCurrency(fee);
+            document.getElementById('totalAmount').textContent = '$' + formatCurrency(total);
+        }
+        
+        // Hàm tạo mã QR
+        function generateQRCode(amount) {
+            const qrCodeElement = document.getElementById('qrCode');
+            qrCodeElement.innerHTML = '';
+            
+            // Tạo nội dung cho mã QR
+            const qrContent = `FLASHBROTHERBANK|${amount}|USD|${Date.now()}|NV`;
+            
+            // Sử dụng thư viện QRCode.js để tạo mã QR
+            const qr = new QRCode(qrCodeElement, {
+                text: qrContent,
+                width: 180,
+                height: 180,
+                colorDark: "#1a3c6c",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+    </script>
+</body>
+</html>
