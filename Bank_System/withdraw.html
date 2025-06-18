@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rút Tiền - FLASH BROTHER BANK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3c6c;
+            --primary-light: #2d5a9a;
+            --secondary: #ff9800;
+            --success: #4caf50;
+            --danger: #f44336;
+            --light: #f5f7fa;
+            --dark: #333;
+            --gray: #888;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6ebf5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-info .role {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #3d8b40;
+            transform: translateY(-2px);
+        }
+
+        .btn-lg {
+            padding: 12px 30px;
+            font-size: 18px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 0;
+            flex: 1;
+        }
+
+        .withdraw-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .withdraw-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .withdraw-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=1000') center/cover;
+            opacity: 0.1;
+        }
+
+        .withdraw-header h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .withdraw-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .withdraw-body {
+            padding: 40px;
+        }
+
+        .balance-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .balance-info h3 {
+            font-size: 20px;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        .balance-amount {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .withdraw-form {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            font-size: 18px;
+            transition: var(--transition);
+            background: var(--light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 60, 108, 0.1);
+        }
+
+        .amount-preview {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            color: var(--primary);
+            font-weight: 600;
+            min-height: 36px;
+        }
+
+        .quick-amounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .amount-btn {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .amount-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .amount-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .withdraw-info {
+            background: rgba(26, 60, 108, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .withdraw-info h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .withdraw-info ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .withdraw-info li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .withdraw-info li i {
+            color: var(--success);
+            margin-top: 5px;
+        }
+
+        /* Success Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: var(--white);
+        }
+
+        .modal h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .modal p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .transaction-details {
+            background: rgba(26, 60, 108, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .transaction-details div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .transaction-details .label {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .transaction-details .value {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?q=80&w=1000') center/cover;
+            opacity: 0.05;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Page transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .page-transition i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .page-transition h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .page-transition p {
+            max-width: 500px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .withdraw-body {
+                padding: 25px;
+            }
+            
+            .form-footer {
+                flex-direction: column;
+            }
+            
+            .balance-amount {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .withdraw-header {
+                padding: 20px;
+            }
+            
+            .withdraw-header h2 {
+                font-size: 24px;
+            }
+            
+            .balance-amount {
+                font-size: 28px;
+            }
+            
+            .quick-amounts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page transition overlay -->
+    <div class="page-transition" id="pageTransition">
+        <i class="fas fa-circle-notch"></i>
+        <h2 id="transitionTitle">Đang chuyển hướng</h2>
+        <p id="transitionMessage">Vui lòng chờ trong giây lát...</p>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3>Rút tiền thành công!</h3>
+            <p>Giao dịch của bạn đã được xử lý thành công.</p>
+            
+            <div class="transaction-details">
+                <div>
+                    <span class="label">Mã giao dịch:</span>
+                    <span class="value" id="transactionId">FB-20230618-9256</span>
+                </div>
+                <div>
+                    <span class="label">Số tiền:</span>
+                    <span class="value" id="transactionAmount">1,000 USD</span>
+                </div>
+                <div>
+                    <span class="label">Thời gian:</span>
+                    <span class="value" id="transactionTime">18/06/2023 14:30:45</span>
+                </div>
+                <div>
+                    <span class="label">Số dư còn lại:</span>
+                    <span class="value" id="remainingBalance">41,000 USD</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary btn-lg" onclick="closeModal()">
+                <i class="fas fa-check"></i> Hoàn thành
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="navigateTo('dashboard.html')">
+                    <i class="fas fa-university"></i>
+                    <h1>FLASH <span>BROTHER</span> BANK</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm dịch vụ...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="name">Joyce-Johnston</div>
+                        <div class="role">Khách hàng cá nhân</div>
+                    </div>
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100" alt="User Avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <div class="withdraw-container">
+                <!-- Withdraw Header -->
+                <div class="withdraw-header">
+                    <h2><i class="fas fa-hand-holding-usd"></i> Rút Tiền Mặt</h2>
+                    <p>Rút tiền mặt nhanh chóng, an toàn tại bất kỳ chi nhánh nào của chúng tôi</p>
+                </div>
+                
+                <!-- Withdraw Body -->
+                <div class="withdraw-body">
+                    <!-- Balance Information -->
+                    <div class="balance-info">
+                        <h3><i class="fas fa-wallet"></i> Số dư hiện tại</h3>
+                        <div class="balance-amount" id="currentBalance">42,000 USD</div>
+                    </div>
+                    
+                    <!-- Withdraw Form -->
+                    <div class="withdraw-form">
+                        <div class="form-group">
+                            <label for="amount"><i class="fas fa-money-bill-wave"></i> Số tiền muốn rút (USD)</label>
+                            <input type="number" id="amount" class="form-control" placeholder="Nhập số tiền bạn muốn rút" min="1" step="1">
+                        </div>
+                        
+                        <div class="amount-preview" id="amountPreview">
+                            <!-- Amount preview will be displayed here -->
+                        </div>
+                        
+                        <div class="quick-amounts">
+                            <div class="amount-btn" onclick="setAmount(100)">100 USD</div>
+                            <div class="amount-btn" onclick="setAmount(200)">200 USD</div>
+                            <div class="amount-btn" onclick="setAmount(500)">500 USD</div>
+                            <div class="amount-btn" onclick="setAmount(1000)">1,000 USD</div>
+                            <div class="amount-btn" onclick="setAmount(2000)">2,000 USD</div>
+                            <div class="amount-btn" onclick="setAmount(5000)">5,000 USD</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location"><i class="fas fa-map-marker-alt"></i> Chi nhánh rút tiền</label>
+                            <select id="location" class="form-control">
+                                <option value="">-- Chọn chi nhánh --</option>
+                                <option value="hq">Trụ sở chính - 123 Nguyễn Huệ, Q.1</option>
+                                <option value="q2">Chi nhánh Quận 2 - 45 Nguyễn Thị Minh Khai</option>
+                                <option value="q3">Chi nhánh Quận 3 - 78 Lê Văn Sỹ</option>
+                                <option value="q7">Chi nhánh Quận 7 - 101 Nguyễn Lương Bằng</option>
+                                <option value="bt">Chi nhánh Bình Thạnh - 222 Xô Viết Nghệ Tĩnh</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <button class="btn btn-outline" onclick="navigateTo('dashboard.html')">
+                                <i class="fas fa-arrow-left"></i> Quay lại
+                            </button>
+                            <button class="btn btn-success btn-lg" onclick="withdrawMoney()">
+                                <i class="fas fa-check-circle"></i> Xác nhận rút tiền
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Withdraw Information -->
+                    <div class="withdraw-info">
+                        <h3><i class="fas fa-info-circle"></i> Thông tin rút tiền</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Giới hạn rút tiền mặt tối đa mỗi ngày: 5,000 USD</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Miễn phí rút tiền tại tất cả các chi nhánh Flash Brother Bank</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Thời gian giao dịch: 8:00 - 17:00 từ Thứ 2 đến Thứ 6</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check"></i>
+                                <span>Mang theo CMND/CCCD khi đến chi nhánh để nhận tiền</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <p>FLASH BROTHER BANK cam kết mang đến những dịch vụ ngân hàng hiện đại, an toàn và tiện lợi nhất cho khách hàng.</p>
+                    <p><i class="fas fa-phone"></i> 0347 255 626</p>
+                    <p><i class="fas fa-envelope"></i> anhhuydeptrai123@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Nguyễn Huệ, Quận 1, TP.HCM</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Dịch vụ</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateTo('depositmoneyintoaccount.html')"><i class="fas fa-chevron-right"></i> Nạp tiền</a></li>
+                        <li><a href="#" onclick="navigateTo('withdraw.html')"><i class="fas fa-chevron-right"></i> Rút tiền</a></li>
+                        <li><a href="#" onclick="navigateTo('history.html')"><i class="fas fa-chevron-right"></i> Lịch sử giao dịch</a></li>
+                        <li><a href="#" onclick="navigateTo('deposit.html')"><i class="fas fa-chevron-right"></i> Gửi tiết kiệm</a></li>
+                        <li><a href="#" onclick="navigateTo('loan.html')"><i class="fas fa-chevron-right"></i> Vay tiền</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Hỗ trợ</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Câu hỏi thường gặp</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Liên hệ hỗ trợ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chi nhánh ngân hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kết nối với chúng tôi</h3>
+                    <p>Theo dõi chúng tôi trên các mạng xã hội để cập nhật thông tin mới nhất</p>
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 15px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 FLASH BROTHER BANK | <a href="#" style="color: var(--secondary);">Chính sách bảo mật</a> | <a href="#" style="color: var(--secondary);">Điều khoản dịch vụ</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hàm chuyển hướng trang
+        function navigateTo(page) {
+            const transition = document.getElementById('pageTransition');
+            const title = document.getElementById('transitionTitle');
+            const message = document.getElementById('transitionMessage');
+            
+            // Hiển thị màn hình chuyển tiếp
+            transition.classList.add('active');
+            
+            // Đặt tiêu đề và thông báo tùy theo trang
+            switch(page) {
+                case 'depositmoneyintoaccount.html':
+                    title.textContent = 'Nạp tiền';
+                    message.textContent = 'Đang chuyển đến trang nạp tiền...';
+                    break;
+                case 'withdraw.html':
+                    title.textContent = 'Rút tiền';
+                    message.textContent = 'Đang chuyển đến trang rút tiền...';
+                    break;
+                case 'history.html':
+                    title.textContent = 'Lịch sử giao dịch';
+                    message.textContent = 'Đang chuyển đến trang lịch sử giao dịch...';
+                    break;
+                case 'deposit.html':
+                    title.textContent = 'Gửi tiết kiệm';
+                    message.textContent = 'Đang chuyển đến trang gửi tiết kiệm...';
+                    break;
+                case 'loan.html':
+                    title.textContent = 'Vay tiền';
+                    message.textContent = 'Đang chuyển đến trang vay tiền...';
+                    break;
+                case 'dashboard.html':
+                    title.textContent = 'Trang chủ';
+                    message.textContent = 'Đang chuyển về trang chủ...';
+                    break;
+                default:
+                    title.textContent = 'Đang chuyển hướng';
+                    message.textContent = 'Vui lòng chờ trong giây lát...';
+            }
+            
+            // Chuyển hướng sau 1.5 giây
+            setTimeout(() => {
+                window.location.href = page;
+            }, 1500);
+        }
+        
+        // Cập nhật số dư từ localStorage khi trang tải
+        document.addEventListener('DOMContentLoaded', function() {
+            const balanceElement = document.getElementById('currentBalance');
+            const storedBalance = localStorage.getItem('bankBalance');
+            
+            if (storedBalance) {
+                // Format số tiền: thêm dấu phân cách hàng nghìn và 2 chữ số thập phân
+                balanceElement.textContent = parseFloat(storedBalance).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) + ' USD';
+            } else {
+                // Nếu không có trong localStorage, sử dụng giá trị mặc định
+                localStorage.setItem('bankBalance', '42000');
+                balanceElement.textContent = '42,000 USD';
+            }
+        });
+        
+        // Đặt số tiền rút từ nút nhanh
+        function setAmount(amount) {
+            document.getElementById('amount').value = amount;
+            updateAmountPreview(amount);
+            
+            // Loại bỏ active class từ tất cả các nút
+            const buttons = document.querySelectorAll('.amount-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Thêm active class cho nút được chọn
+            event.target.classList.add('active');
+        }
+        
+        // Cập nhật xem trước số tiền
+        function updateAmountPreview(amount) {
+            const amountPreview = document.getElementById('amountPreview');
+            if (amount) {
+                const formattedAmount = parseFloat(amount).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                amountPreview.textContent = `Bạn đang rút: ${formattedAmount} USD`;
+                amountPreview.style.color = '#1a3c6c';
+            } else {
+                amountPreview.textContent = '';
+            }
+        }
+        
+        // Xử lý sự kiện khi người dùng nhập số tiền
+        document.getElementById('amount').addEventListener('input', function() {
+            updateAmountPreview(this.value);
+            
+            // Loại bỏ active class từ tất cả các nút nhanh
+            const buttons = document.querySelectorAll('.amount-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+        });
+        
+        // Hàm rút tiền
+        function withdrawMoney() {
+            const amountInput = document.getElementById('amount');
+            const locationSelect = document.getElementById('location');
+            const amount = parseFloat(amountInput.value);
+            const location = locationSelect.value;
+            
+            // Kiểm tra dữ liệu nhập
+            if (!amount || amount <= 0) {
+                alert('Vui lòng nhập số tiền hợp lệ');
+                return;
+            }
+            
+            if (!location) {
+                alert('Vui lòng chọn chi nhánh rút tiền');
+                return;
+            }
+            
+            // Lấy số dư hiện tại
+            const storedBalance = localStorage.getItem('bankBalance') || '42000';
+            let currentBalance = parseFloat(storedBalance);
+            
+            // Kiểm tra số dư
+            if (amount > currentBalance) {
+                alert('Số dư tài khoản không đủ để thực hiện giao dịch này');
+                return;
+            }
+            
+            // Kiểm tra giới hạn rút tiền
+            if (amount > 5000) {
+                alert('Số tiền rút vượt quá giới hạn 5,000 USD mỗi ngày');
+                return;
+            }
+            
+            // Trừ tiền và cập nhật số dư
+            const newBalance = currentBalance - amount;
+            localStorage.setItem('bankBalance', newBalance.toString());
+            
+            // Hiển thị thông báo thành công
+            showSuccessModal(amount, newBalance);
+        }
+        
+        // Hiển thị modal thành công
+        function showSuccessModal(amount, newBalance) {
+            const modal = document.getElementById('successModal');
+            const formattedAmount = amount.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            const formattedBalance = newBalance.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            
+            // Tạo mã giao dịch ngẫu nhiên
+            const transactionId = 'FB-' + new Date().toISOString().slice(0, 10).replace(/-/g, '') + '-' + Math.floor(1000 + Math.random() * 9000);
+            
+            // Lấy thời gian hiện tại
+            const now = new Date();
+            const transactionTime = now.toLocaleString('vi-VN');
+            
+            // Cập nhật thông tin giao dịch
+            document.getElementById('transactionId').textContent = transactionId;
+            document.getElementById('transactionAmount').textContent = formattedAmount + ' USD';
+            document.getElementById('transactionTime').textContent = transactionTime;
+            document.getElementById('remainingBalance').textContent = formattedBalance + ' USD';
+            
+            // Hiển thị modal
+            modal.classList.add('active');
+        }
+        
+        // Đóng modal
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('active');
+            
+            // Cập nhật số dư trên trang
+            const storedBalance = localStorage.getItem('bankBalance') || '42000';
+            const balanceElement = document.getElementById('currentBalance');
+            balanceElement.textContent = parseFloat(storedBalance).toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + ' USD';
+            
+            // Reset form
+            document.getElementById('amount').value = '';
+            document.getElementById('location').value = '';
+            document.getElementById('amountPreview').textContent = '';
+            
+            // Loại bỏ active class từ các nút nhanh
+            const buttons = document.querySelectorAll('.amount-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+        }
+        
+        // Animation for buttons
+        document.querySelectorAll('.btn, .amount-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

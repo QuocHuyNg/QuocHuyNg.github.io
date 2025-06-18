@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vay Tiền - FLASH BROTHER BANK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3c6c;
+            --primary-light: #2d5a9a;
+            --secondary: #ff9800;
+            --success: #4caf50;
+            --danger: #f44336;
+            --light: #f5f7fa;
+            --dark: #333;
+            --gray: #888;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6ebf5 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-info .role {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #3d8b40;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 0;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            z-index: -1;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .page-header h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        /* Loan Application Section */
+        .loan-application {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .loan-application {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loan-form-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .loan-summary-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 60, 108, 0.1);
+        }
+
+        .slider-container {
+            padding: 15px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e0e0e0;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background: var(--primary-light);
+        }
+
+        .slider-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .term-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .term-option {
+            padding: 12px;
+            background: #f5f7fa;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .term-option:hover {
+            background: #e6ebf5;
+        }
+
+        .term-option.active {
+            border-color: var(--primary);
+            background: rgba(26, 60, 108, 0.1);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .summary-value {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .interest-rate {
+            font-size: 14px;
+            color: var(--success);
+            margin-top: 5px;
+        }
+
+        .total-loan {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .repayment-date {
+            background: #f5f7fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .repayment-date span {
+            color: var(--primary);
+        }
+
+        .disclaimer {
+            background: #fff8e1;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?q=80&w=1000') center/cover;
+            opacity: 0.05;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Page transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .page-transition i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .page-transition h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .page-transition p {
+            max-width: 500px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .page-header h2 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .loan-form-container, .loan-summary-container {
+                padding: 20px;
+            }
+            
+            .total-loan {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page transition overlay -->
+    <div class="page-transition" id="pageTransition">
+        <i class="fas fa-circle-notch"></i>
+        <h2 id="transitionTitle">Đang xử lý khoản vay</h2>
+        <p id="transitionMessage">Vui lòng chờ trong giây lát...</p>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="navigateTo('dashboard.html')">
+                    <i class="fas fa-university"></i>
+                    <h1>FLASH <span>BROTHER</span> BANK</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm dịch vụ...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="name">Joyce-Johnston</div>
+                        <div class="role">Khách hàng cá nhân</div>
+                    </div>
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100" alt="User Avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h2>Khoản Vay Đặc Biệt</h2>
+            </section>
+
+            <!-- Loan Application -->
+            <section class="loan-application">
+                <div class="loan-form-container">
+                    <h2 class="section-title">Thông tin khoản vay</h2>
+                    
+                    <div class="form-group">
+                        <label for="loanAmount">Số tiền muốn vay (USD)</label>
+                        <input type="number" id="loanAmount" class="form-control" min="100" max="100000" value="5000">
+                        <div class="slider-container">
+                            <input type="range" id="loanAmountSlider" class="slider" min="100" max="100000" step="100" value="5000">
+                            <div class="slider-values">
+                                <span>100 USD</span>
+                                <span>50,000 USD</span>
+                                <span>100,000 USD</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Kỳ hạn vay</label>
+                        <div class="term-options">
+                            <div class="term-option" data-months="3">3 tháng</div>
+                            <div class="term-option" data-months="6">6 tháng</div>
+                            <div class="term-option active" data-months="12">12 tháng</div>
+                            <div class="term-option" data-months="24">24 tháng</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">Mục đích vay</label>
+                        <select id="purpose" class="form-control">
+                            <option value="business">Kinh doanh</option>
+                            <option value="house">Mua nhà</option>
+                            <option value="car">Mua xe</option>
+                            <option value="education">Giáo dục</option>
+                            <option value="debt">Trả nợ</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="income">Thu nhập hàng tháng (USD)</label>
+                        <input type="number" id="income" class="form-control" min="0" value="3000">
+                    </div>
+                    
+                    <button class="btn btn-primary" id="calculateBtn" style="width: 100%; padding: 12px; margin-top: 10px;">
+                        <i class="fas fa-calculator"></i> Tính toán khoản vay
+                    </button>
+                </div>
+                
+                <div class="loan-summary-container">
+                    <h2 class="section-title">Tóm tắt khoản vay</h2>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Số tiền vay</div>
+                        <div class="summary-value" id="summaryAmount">5,000 USD</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Kỳ hạn vay</div>
+                        <div class="summary-value" id="summaryTerm">12 tháng</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Lãi suất</div>
+                        <div class="summary-value">8% / năm</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Lãi phải trả</div>
+                        <div class="summary-value" id="summaryInterest">400 USD</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Phí dịch vụ</div>
+                        <div class="summary-value">50 USD</div>
+                    </div>
+                    
+                    <div class="total-loan" id="totalRepayment">5,450 USD</div>
+                    
+                    <div class="repayment-date">
+                        <i class="fas fa-calendar-alt"></i> Ngày đáo hạn: 
+                        <span id="dueDate">01/06/2025</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Thanh toán hàng tháng</div>
+                        <div class="summary-value" id="monthlyPayment">454.17 USD</div>
+                    </div>
+                    
+                    <button class="btn btn-success" id="confirmLoanBtn" style="width: 100%; padding: 12px; margin-top: 20px;">
+                        <i class="fas fa-file-contract"></i> Xác nhận vay
+                    </button>
+                    
+                    <div class="disclaimer">
+                        <p><i class="fas fa-exclamation-circle"></i> Khoản vay của bạn sẽ được xử lý trong vòng 24 giờ. Vui lòng kiểm tra email để biết thêm chi tiết.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <p>FLASH BROTHER BANK cam kết mang đến những dịch vụ ngân hàng hiện đại, an toàn và tiện lợi nhất cho khách hàng.</p>
+                    <p><i class="fas fa-phone"></i> 0347 255 626</p>
+                    <p><i class="fas fa-envelope"></i> anhhuydeptrai123@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Nguyễn Huệ, Quận 1, TP.HCM</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Dịch vụ</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="navigateTo('depositmoneyintoaccount.html')"><i class="fas fa-chevron-right"></i> Nạp tiền</a></li>
+                        <li><a href="#" onclick="navigateTo('withdraw.html')"><i class="fas fa-chevron-right"></i> Rút tiền</a></li>
+                        <li><a href="#" onclick="navigateTo('history.html')"><i class="fas fa-chevron-right"></i> Lịch sử giao dịch</a></li>
+                        <li><a href="#" onclick="navigateTo('deposit.html')"><i class="fas fa-chevron-right"></i> Gửi tiết kiệm</a></li>
+                        <li><a href="#" onclick="navigateTo('loan.html')"><i class="fas fa-chevron-right"></i> Vay tiền</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Hỗ trợ</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Câu hỏi thường gặp</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Liên hệ hỗ trợ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chi nhánh ngân hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kết nối với chúng tôi</h3>
+                    <p>Theo dõi chúng tôi trên các mạng xã hội để cập nhật thông tin mới nhất</p>
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 15px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 FLASH BROTHER BANK | <a href="#" style="color: var(--secondary);">Chính sách bảo mật</a> | <a href="#" style="color: var(--secondary);">Điều khoản dịch vụ</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hàm chuyển hướng trang
+        function navigateTo(page) {
+            const transition = document.getElementById('pageTransition');
+            const title = document.getElementById('transitionTitle');
+            const message = document.getElementById('transitionMessage');
+            
+            // Hiển thị màn hình chuyển tiếp
+            transition.classList.add('active');
+            
+            // Đặt tiêu đề và thông báo tùy theo trang
+            switch(page) {
+                case 'depositmoneyintoaccount.html':
+                    title.textContent = 'Nạp tiền';
+                    message.textContent = 'Đang chuyển đến trang nạp tiền...';
+                    break;
+                case 'withdraw.html':
+                    title.textContent = 'Rút tiền';
+                    message.textContent = 'Đang chuyển đến trang rút tiền...';
+                    break;
+                case 'history.html':
+                    title.textContent = 'Lịch sử giao dịch';
+                    message.textContent = 'Đang chuyển đến trang lịch sử giao dịch...';
+                    break;
+                case 'deposit.html':
+                    title.textContent = 'Gửi tiết kiệm';
+                    message.textContent = 'Đang chuyển đến trang gửi tiết kiệm...';
+                    break;
+                case 'loan.html':
+                    title.textContent = 'Vay tiền';
+                    message.textContent = 'Đang chuyển đến trang vay tiền...';
+                    break;
+                case 'dashboard.html':
+                    title.textContent = 'Trang chủ';
+                    message.textContent = 'Đang chuyển về trang chủ...';
+                    break;
+                default:
+                    title.textContent = 'Đang chuyển hướng';
+                    message.textContent = 'Vui lòng chờ trong giây lát...';
+            }
+            
+            // Chuyển hướng sau 1.5 giây
+            setTimeout(() => {
+                window.location.href = page;
+            }, 1500);
+        }
+        
+        // DOM Elements
+        const loanAmountInput = document.getElementById('loanAmount');
+        const loanAmountSlider = document.getElementById('loanAmountSlider');
+        const termOptions = document.querySelectorAll('.term-option');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const confirmLoanBtn = document.getElementById('confirmLoanBtn');
+        
+        // Summary Elements
+        const summaryAmount = document.getElementById('summaryAmount');
+        const summaryTerm = document.getElementById('summaryTerm');
+        const summaryInterest = document.getElementById('summaryInterest');
+        const totalRepayment = document.getElementById('totalRepayment');
+        const dueDate = document.getElementById('dueDate');
+        const monthlyPayment = document.getElementById('monthlyPayment');
+        
+        // Current term in months (default 12 months)
+        let currentTerm = 12;
+        
+        // Sync loan amount inputs
+        loanAmountInput.addEventListener('input', function() {
+            loanAmountSlider.value = this.value;
+            updateLoanSummary();
+        });
+        
+        loanAmountSlider.addEventListener('input', function() {
+            loanAmountInput.value = this.value;
+            updateLoanSummary();
+        });
+        
+        // Term selection
+        termOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                termOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                currentTerm = parseInt(this.dataset.months);
+                updateLoanSummary();
+            });
+        });
+        
+        // Update loan summary
+        function updateLoanSummary() {
+            const amount = parseFloat(loanAmountInput.value) || 5000;
+            const interestRate = 0.08; // 8% per year
+            
+            // Calculate interest
+            const interest = amount * interestRate * (currentTerm / 12);
+            const serviceFee = 50;
+            const total = amount + interest + serviceFee;
+            
+            // Calculate monthly payment
+            const monthly = total / currentTerm;
+            
+            // Calculate due date
+            const today = new Date();
+            const dueDateObj = new Date(today);
+            dueDateObj.setMonth(dueDateObj.getMonth() + currentTerm);
+            
+            // Format date as DD/MM/YYYY
+            const formattedDate = `${dueDateObj.getDate().toString().padStart(2, '0')}/${
+                (dueDateObj.getMonth() + 1).toString().padStart(2, '0')}/${
+                dueDateObj.getFullYear()}`;
+            
+            // Update summary
+            summaryAmount.textContent = amount.toLocaleString('en-US') + ' USD';
+            summaryTerm.textContent = currentTerm + ' tháng';
+            summaryInterest.textContent = interest.toFixed(0) + ' USD';
+            totalRepayment.textContent = total.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + ' USD';
+            dueDate.textContent = formattedDate;
+            monthlyPayment.textContent = monthly.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }) + ' USD';
+        }
+        
+        // Calculate button
+        calculateBtn.addEventListener('click', updateLoanSummary);
+        
+        // Confirm loan button
+        confirmLoanBtn.addEventListener('click', function() {
+            const amount = parseFloat(loanAmountInput.value) || 5000;
+            
+            // Get current balance from localStorage
+            let currentBalance = parseFloat(localStorage.getItem('bankBalance')) || 42000;
+            
+            // Add loan amount to balance
+            currentBalance += amount;
+            
+            // Save updated balance to localStorage
+            localStorage.setItem('bankBalance', currentBalance.toString());
+            
+            // Show success message
+            alert(`Bạn đã vay thành công ${amount.toLocaleString('en-US')} USD!\nSố dư mới: ${currentBalance.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })} USD`);
+            
+            // Navigate to dashboard after 2 seconds
+            setTimeout(() => {
+                navigateTo('dashboard.html');
+            }, 2000);
+        });
+        
+        // Initialize the summary
+        updateLoanSummary();
+        
+        // Simple animation for buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Term options animation
+        document.querySelectorAll('.term-option').forEach(option => {
+            option.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                }
+            });
+            
+            option.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
