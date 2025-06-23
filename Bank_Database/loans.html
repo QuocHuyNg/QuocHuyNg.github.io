@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Khoản Vay - FLASH BROTHER BANK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3c6c;
+            --primary-light: #2d5a9a;
+            --secondary: #ff9800;
+            --success: #4caf50;
+            --danger: #f44336;
+            --warning: #ffc107;
+            --light: #f5f7fa;
+            --dark: #333;
+            --gray: #888;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6ebf5 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-info .role {
+            font-size: 13px;
+            opacity: 0.8;
+            background: var(--secondary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background: #dc3545;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #3d8b40;
+        }
+
+        /* Admin Dashboard Layout */
+        .admin-dashboard {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px 0;
+            transition: var(--transition);
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h3 {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .menu-item i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: #f8fafc;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h2 {
+            font-size: 26px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .dashboard-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        /* Loan Management Section */
+        .loan-management {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .management-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .management-header h3 {
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .filters-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+            background: rgba(26, 60, 108, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .filter-group select, 
+        .filter-group input {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: var(--white);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .filter-group select:focus, 
+        .filter-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 60, 108, 0.1);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: rgba(26, 60, 108, 0.05);
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        tr:hover {
+            background: rgba(26, 60, 108, 0.03);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+        }
+
+        .status-active {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+
+        .status-closed {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-btn.view {
+            background: rgba(26, 60, 108, 0.1);
+            color: var(--primary);
+        }
+
+        .action-btn.edit {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--secondary);
+        }
+
+        .action-btn.delete {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25px;
+            gap: 8px;
+        }
+
+        .pagination-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .pagination-btn:hover {
+            background: rgba(26, 60, 108, 0.05);
+        }
+
+        .pagination-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?q=80&w=1000') center/cover;
+            opacity: 0.05;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .admin-dashboard {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 10px 0;
+            }
+            
+            .sidebar-header {
+                padding: 0 15px 15px;
+            }
+            
+            .menu-item {
+                padding: 10px 15px;
+            }
+            
+            .filters-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .management-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .filter-actions {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .filters-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-university"></i>
+                    <h1>FLASH <span>BROTHER</span> BANK</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm khoản vay, khách hàng...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="name">Nguyễn Văn Quản Trị</div>
+                        <div class="role">Quản trị viên</div>
+                    </div>
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100" alt="Admin Avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-tachometer-alt"></i> Bảng điều khiển</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="menu-item" data-url="index.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Tổng quan</span>
+                </li>
+                <li class="menu-item" data-url="customers.html">
+                    <i class="fas fa-users"></i>
+                    <span>Quản lý khách hàng</span>
+                </li>
+                <li class="menu-item" data-url="transactions.html">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Giao dịch</span>
+                </li>
+                <li class="menu-item" data-url="savings.html">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Tài khoản tiết kiệm</span>
+                </li>
+                <li class="menu-item active" data-url="loans.html">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span>Quản lý khoản vay</span>
+                </li>
+                <li class="menu-item" data-url="reports.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Báo cáo & Thống kê</span>
+                </li>
+                <li class="menu-item" data-url="settings.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt hệ thống</span>
+                </li>
+                <li class="menu-item" data-url="support.html">
+                    <i class="fas fa-headset"></i>
+                    <span>Hỗ trợ khách hàng</span>
+                </li>
+                <li class="menu-item" data-url="staff.html">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Quản lý nhân viên</span>
+                </li>
+                <li class="menu-item" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h2>Quản lý khoản vay</h2>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Thêm khoản vay</button>
+                    <button class="btn btn-success"><i class="fas fa-download"></i> Xuất báo cáo</button>
+                </div>
+            </div>
+
+            <!-- Loan Management Section -->
+            <div class="loan-management">
+                <div class="management-header">
+                    <h3>Danh sách khoản vay</h3>
+                    <div class="filter-actions">
+                        <button class="btn btn-outline"><i class="fas fa-filter"></i> Lọc nâng cao</button>
+                        <button class="btn btn-primary"><i class="fas fa-sync-alt"></i> Làm mới</button>
+                    </div>
+                </div>
+                
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="status-filter">Trạng thái</label>
+                        <select id="status-filter">
+                            <option value="all">Tất cả</option>
+                            <option value="active">Đang hoạt động</option>
+                            <option value="pending">Chờ duyệt</option>
+                            <option value="closed">Đã đóng</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="amount-filter">Khoản vay ($)</label>
+                        <select id="amount-filter">
+                            <option value="all">Tất cả</option>
+                            <option value="0-10000">Dưới 10,000</option>
+                            <option value="10000-50000">10,000 - 50,000</option>
+                            <option value="50000-100000">50,000 - 100,000</option>
+                            <option value="100000+">Trên 100,000</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="term-filter">Kỳ hạn (tháng)</label>
+                        <select id="term-filter">
+                            <option value="all">Tất cả</option>
+                            <option value="6">6 tháng</option>
+                            <option value="12">12 tháng</option>
+                            <option value="24">24 tháng</option>
+                            <option value="36">36 tháng</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="date-filter">Ngày vay</label>
+                        <input type="date" id="date-filter">
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table id="loans-table">
+                        <thead>
+                            <tr>
+                                <th>Mã khoản vay</th>
+                                <th>Khách hàng</th>
+                                <th>Số tiền vay ($)</th>
+                                <th>Lãi suất (%)</th>
+                                <th>Kỳ hạn (tháng)</th>
+                                <th>Ngày vay</th>
+                                <th>Mục đích</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="loans-data">
+                            <!-- Dữ liệu sẽ được tạo bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination" id="pagination">
+                    <!-- Phân trang sẽ được tạo bằng JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <p>FLASH BROTHER BANK cam kết mang đến những dịch vụ ngân hàng hiện đại, an toàn và tiện lợi nhất cho khách hàng.</p>
+                    <p><i class="fas fa-phone"></i> 0347 255 626</p>
+                    <p><i class="fas fa-envelope"></i> admin@flashbrotherbank.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Nguyễn Huệ, Quận 1, TP.HCM</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quản trị hệ thống</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý người dùng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý giao dịch</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Báo cáo tài chính</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý khoản vay</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cài đặt hệ thống</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Hỗ trợ quản trị</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Tài liệu kỹ thuật</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Bảo mật hệ thống</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cập nhật phần mềm</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liên hệ hỗ trợ</h3>
+                    <p>Liên hệ với bộ phận kỹ thuật để được hỗ trợ 24/7</p>
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 15px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-github"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 FLASH BROTHER BANK | <a href="#" style="color: var(--secondary);">Chính sách bảo mật</a> | <a href="#" style="color: var(--secondary);">Điều khoản dịch vụ</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dữ liệu mẫu về các khoản vay (30 mẫu)
+        const loanData = [
+            { id: 'LN001', customer: 'Jackson', amount: 25000, interest: 8.5, term: 12, date: '2023-05-15', purpose: 'Mua xe', status: 'active' },
+            { id: 'LN002', customer: 'Chambers', amount: 45000, interest: 7.2, term: 24, date: '2023-07-22', purpose: 'Kinh doanh', status: 'active' },
+            { id: 'LN003', customer: 'Lee-Hughes', amount: 120000, interest: 6.8, term: 36, date: '2023-01-10', purpose: 'Mua nhà', status: 'active' },
+            { id: 'LN004', customer: 'Powell Ltd', amount: 8000, interest: 9.0, term: 6, date: '2023-09-05', purpose: 'Giáo dục', status: 'closed' },
+            { id: 'LN005', customer: 'Reese', amount: 35000, interest: 7.5, term: 12, date: '2023-08-18', purpose: 'Cải tạo nhà', status: 'pending' },
+            { id: 'LN006', customer: 'Johnson-Black', amount: 150000, interest: 6.2, term: 36, date: '2023-02-28', purpose: 'Đầu tư', status: 'active' },
+            { id: 'LN007', customer: 'Ruiz Inc', amount: 28000, interest: 8.0, term: 12, date: '2023-06-12', purpose: 'Mua thiết bị', status: 'active' },
+            { id: 'LN008', customer: 'Smith LLC', amount: 65000, interest: 7.8, term: 24, date: '2023-11-01', purpose: 'Kinh doanh', status: 'pending' },
+            { id: 'LN009', customer: 'Maxwell', amount: 9500, interest: 9.5, term: 6, date: '2023-10-15', purpose: 'Du lịch', status: 'closed' },
+            { id: 'LN010', customer: 'Benjamin', amount: 42000, interest: 7.0, term: 12, date: '2023-04-22', purpose: 'Y tế', status: 'active' },
+            { id: 'LN011', customer: 'Allen', amount: 115000, interest: 6.5, term: 36, date: '2023-03-17', purpose: 'Mua nhà', status: 'active' },
+            { id: 'LN012', customer: 'Cooke Inc', amount: 32000, interest: 8.2, term: 12, date: '2023-08-09', purpose: 'Kinh doanh', status: 'closed' },
+            { id: 'LN013', customer: 'Waters Inc', amount: 78000, interest: 7.4, term: 24, date: '2023-07-30', purpose: 'Cải tạo nhà', status: 'active' },
+            { id: 'LN014', customer: 'French-Barnes', amount: 15000, interest: 8.8, term: 6, date: '2023-12-05', purpose: 'Giáo dục', status: 'pending' },
+            { id: 'LN015', customer: 'Cox', amount: 200000, interest: 6.0, term: 36, date: '2023-01-25', purpose: 'Đầu tư', status: 'active' },
+            { id: 'LN016', customer: 'Bell', amount: 55000, interest: 7.6, term: 24, date: '2023-09-18', purpose: 'Mua xe', status: 'active' },
+            { id: 'LN017', customer: 'Brewer Group', amount: 28000, interest: 8.5, term: 12, date: '2023-05-02', purpose: 'Kinh doanh', status: 'closed' },
+            { id: 'LN018', customer: 'Dyer-Watson', amount: 92000, interest: 7.1, term: 24, date: '2023-10-28', purpose: 'Cải tạo nhà', status: 'active' },
+            { id: 'LN019', customer: 'Hill PLC', amount: 35000, interest: 7.9, term: 12, date: '2023-07-14', purpose: 'Y tế', status: 'pending' },
+            { id: 'LN020', customer: 'Ferguson Inc', amount: 180000, interest: 6.3, term: 36, date: '2023-03-05', purpose: 'Mua nhà', status: 'active' },
+            { id: 'LN021', customer: 'Middleton', amount: 42000, interest: 8.0, term: 12, date: '2023-08-22', purpose: 'Mua thiết bị', status: 'active' },
+            { id: 'LN022', customer: 'Wells-Moore', amount: 68000, interest: 7.3, term: 24, date: '2023-11-15', purpose: 'Kinh doanh', status: 'closed' },
+            { id: 'LN023', customer: 'Mahoney LLC', amount: 11000, interest: 9.2, term: 6, date: '2023-12-10', purpose: 'Du lịch', status: 'pending' },
+            { id: 'LN024', customer: 'Molina', amount: 135000, interest: 6.7, term: 36, date: '2023-04-05', purpose: 'Đầu tư', status: 'active' },
+            { id: 'LN025', customer: 'Arnold', amount: 48000, interest: 7.7, term: 12, date: '2023-06-28', purpose: 'Mua xe', status: 'active' },
+            { id: 'LN026', customer: 'Anderson PLC', amount: 75000, interest: 7.2, term: 24, date: '2023-09-30', purpose: 'Cải tạo nhà', status: 'closed' },
+            { id: 'LN027', customer: 'Jones-Page', amount: 32000, interest: 8.3, term: 12, date: '2023-07-08', purpose: 'Y tế', status: 'pending' },
+            { id: 'LN028', customer: 'Martin', amount: 195000, interest: 6.1, term: 36, date: '2023-02-14', purpose: 'Mua nhà', status: 'active' },
+            { id: 'LN029', customer: 'Fitzgerald', amount: 58000, interest: 7.4, term: 24, date: '2023-10-05', purpose: 'Kinh doanh', status: 'active' },
+            { id: 'LN030', customer: 'Ayala-Green', amount: 22000, interest: 8.6, term: 12, date: '2023-08-14', purpose: 'Giáo dục', status: 'closed' }
+        ];
+        
+        // Biến quản lý phân trang
+        let currentPage = 1;
+        const rowsPerPage = 10;
+        let filteredData = [...loanData];
+        
+        // Hiển thị dữ liệu khoản vay
+        function displayLoans(data, page = 1) {
+            const tableBody = document.getElementById('loans-data');
+            tableBody.innerHTML = '';
+            
+            const startIndex = (page - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
+            const paginatedData = data.slice(startIndex, endIndex);
+            
+            if (paginatedData.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 30px;">Không tìm thấy khoản vay nào</td></tr>`;
+                return;
+            }
+            
+            paginatedData.forEach(loan => {
+                const row = document.createElement('tr');
+                
+                // Xác định lớp trạng thái
+                let statusClass = '';
+                let statusText = '';
+                switch(loan.status) {
+                    case 'active':
+                        statusClass = 'status-active';
+                        statusText = 'Đang hoạt động';
+                        break;
+                    case 'pending':
+                        statusClass = 'status-pending';
+                        statusText = 'Chờ duyệt';
+                        break;
+                    case 'closed':
+                        statusClass = 'status-closed';
+                        statusText = 'Đã đóng';
+                        break;
+                }
+                
+                row.innerHTML = `
+                    <td>${loan.id}</td>
+                    <td>${loan.customer}</td>
+                    <td>${loan.amount.toLocaleString()}</td>
+                    <td>${loan.interest}</td>
+                    <td>${loan.term}</td>
+                    <td>${loan.date}</td>
+                    <td>${loan.purpose}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <div class="action-btn view" title="Xem chi tiết"><i class="fas fa-eye"></i></div>
+                            <div class="action-btn edit" title="Chỉnh sửa"><i class="fas fa-edit"></i></div>
+                            <div class="action-btn delete" title="Xóa"><i class="fas fa-trash"></i></div>
+                        </div>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Tạo phân trang
+        function setupPagination(data) {
+            const paginationDiv = document.getElementById('pagination');
+            paginationDiv.innerHTML = '';
+            
+            const pageCount = Math.ceil(data.length / rowsPerPage);
+            
+            if (pageCount <= 1) return;
+            
+            // Nút trang trước
+            const prevBtn = document.createElement('div');
+            prevBtn.className = `pagination-btn ${currentPage === 1 ? 'disabled' : ''}`;
+            prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayLoans(filteredData, currentPage);
+                    setupPagination(filteredData);
+                }
+            });
+            paginationDiv.appendChild(prevBtn);
+            
+            // Các nút trang
+            for (let i = 1; i <= pageCount; i++) {
+                const pageBtn = document.createElement('div');
+                pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    displayLoans(filteredData, currentPage);
+                    setupPagination(filteredData);
+                });
+                paginationDiv.appendChild(pageBtn);
+            }
+            
+            // Nút trang sau
+            const nextBtn = document.createElement('div');
+            nextBtn.className = `pagination-btn ${currentPage === pageCount ? 'disabled' : ''}`;
+            nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < pageCount) {
+                    currentPage++;
+                    displayLoans(filteredData, currentPage);
+                    setupPagination(filteredData);
+                }
+            });
+            paginationDiv.appendChild(nextBtn);
+        }
+        
+        // Lọc dữ liệu
+        function filterData() {
+            const statusFilter = document.getElementById('status-filter').value;
+            const amountFilter = document.getElementById('amount-filter').value;
+            const termFilter = document.getElementById('term-filter').value;
+            const dateFilter = document.getElementById('date-filter').value;
+            
+            filteredData = loanData.filter(loan => {
+                // Lọc theo trạng thái
+                if (statusFilter !== 'all' && loan.status !== statusFilter) {
+                    return false;
+                }
+                
+                // Lọc theo khoản vay
+                if (amountFilter !== 'all') {
+                    const [min, max] = amountFilter.split('-').map(val => 
+                        val.endsWith('+') ? parseInt(val) : val ? parseInt(val) : null
+                    );
+                    
+                    if (max === undefined) { // Trên 100,000
+                        if (loan.amount < min) return false;
+                    } else {
+                        if (loan.amount < min || loan.amount > max) return false;
+                    }
+                }
+                
+                // Lọc theo kỳ hạn
+                if (termFilter !== 'all' && loan.term !== parseInt(termFilter)) {
+                    return false;
+                }
+                
+                // Lọc theo ngày
+                if (dateFilter && loan.date !== dateFilter) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            currentPage = 1;
+            displayLoans(filteredData, currentPage);
+            setupPagination(filteredData);
+        }
+        
+        // Đăng ký sự kiện cho các bộ lọc
+        document.getElementById('status-filter').addEventListener('change', filterData);
+        document.getElementById('amount-filter').addEventListener('change', filterData);
+        document.getElementById('term-filter').addEventListener('change', filterData);
+        document.getElementById('date-filter').addEventListener('change', filterData);
+        
+        // Khởi tạo trang
+        document.addEventListener('DOMContentLoaded', () => {
+            displayLoans(filteredData, currentPage);
+            setupPagination(filteredData);
+            
+            // Menu item activation and navigation
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Get URL from data attribute
+                    const url = this.getAttribute('data-url');
+                    
+                    // Navigate to the URL
+                    if (url) {
+                        window.location.href = url;
+                    }
+                });
+            });
+
+            // Special handling for logout button
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                    // Redirect to login page
+                    window.location.href = 'login.html';
+                }
+            });
+
+            // Simple animation for buttons
+            document.querySelectorAll('.btn, .action-btn').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
