@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - FLASH BROTHER BANK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #1a3c6c;
+            --primary-light: #2d5a9a;
+            --secondary: #ff9800;
+            --success: #4caf50;
+            --danger: #f44336;
+            --warning: #ffc107;
+            --light: #f5f7fa;
+            --dark: #333;
+            --gray: #888;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6ebf5 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-info .role {
+            font-size: 13px;
+            opacity: 0.8;
+            background: var(--secondary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background: #dc3545;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #3d8b40;
+        }
+
+        /* Admin Dashboard Layout */
+        .admin-dashboard {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px 0;
+            transition: var(--transition);
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h3 {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .menu-item i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: #f8fafc;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h2 {
+            font-size: 26px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .dashboard-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-icon.users {
+            background: rgba(26, 60, 108, 0.1);
+            color: var(--primary);
+        }
+
+        .stat-icon.transactions {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+
+        .stat-icon.revenue {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--secondary);
+        }
+
+        .stat-icon.accounts {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        .stat-title {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .stat-change {
+            font-size: 14px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-change.positive {
+            color: var(--success);
+        }
+
+        .stat-change.negative {
+            color: var(--danger);
+        }
+
+        /* Charts Section */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chart-header h3 {
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+
+        /* Recent Activity */
+        .activity-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .activity-header h3 {
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .activity-list {
+            list-style: none;
+        }
+
+        .activity-item {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .activity-icon.deposit {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+
+        .activity-icon.withdraw {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        .activity-icon.transfer {
+            background: rgba(26, 60, 108, 0.1);
+            color: var(--primary);
+        }
+
+        .activity-icon.account {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--secondary);
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .activity-info {
+            font-size: 14px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .activity-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+        }
+
+        .status-completed {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+
+        .status-failed {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        /* User Management */
+        .user-management {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .management-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .management-header h3 {
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: rgba(26, 60, 108, 0.05);
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        tr:hover {
+            background: rgba(26, 60, 108, 0.03);
+        }
+
+        .user-avatar-small {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .user-name {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+
+        .status-inactive {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-btn.view {
+            background: rgba(26, 60, 108, 0.1);
+            color: var(--primary);
+        }
+
+        .action-btn.edit {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--secondary);
+        }
+
+        .action-btn.delete {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?q=80&w=1000') center/cover;
+            opacity: 0.05;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .admin-dashboard {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 10px 0;
+            }
+            
+            .sidebar-header {
+                padding: 0 15px 15px;
+            }
+            
+            .menu-item {
+                padding: 10px 15px;
+            }
+            
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .chart-container {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .stat-card {
+                padding: 20px;
+            }
+            
+            .stat-value {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="navigateTo('index.html')">
+                    <i class="fas fa-university"></i>
+                    <h1>FLASH <span>BROTHER</span> BANK</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm khách hàng, giao dịch...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="name">Admin</div>
+                        <div class="role">Quản trị viên</div>
+                    </div>
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100" alt="Admin Avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-tachometer-alt"></i> Bảng điều khiển</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="menu-item active" data-url="index.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Tổng quan</span>
+                </li>
+                <li class="menu-item" data-url="customers.html">
+                    <i class="fas fa-users"></i>
+                    <span>Quản lý khách hàng</span>
+                </li>
+                <li class="menu-item" data-url="transactions.html">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Giao dịch</span>
+                </li>
+                <li class="menu-item" data-url="savings.html">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Tài khoản tiết kiệm</span>
+                </li>
+                <li class="menu-item" data-url="loans.html">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span>Quản lý khoản vay</span>
+                </li>
+                <li class="menu-item" data-url="reports.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Báo cáo & Thống kê</span>
+                </li>
+                <li class="menu-item" data-url="settings.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt hệ thống</span>
+                </li>
+                <li class="menu-item" data-url="support.html">
+                    <i class="fas fa-headset"></i>
+                    <span>Hỗ trợ khách hàng</span>
+                </li>
+                <li class="menu-item" data-url="staff.html">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Quản lý nhân viên</span>
+                </li>
+                <li class="menu-item" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h2>Tổng quan hệ thống</h2>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-download"></i> Xuất báo cáo</button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Tổng khách hàng</div>
+                            <div class="stat-value">500+</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 5.2% (tháng trước)
+                            </div>
+                        </div>
+                        <div class="stat-icon users">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Giao dịch hôm nay</div>
+                            <div class="stat-value">1,284</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 12.7% (hôm qua)
+                            </div>
+                        </div>
+                        <div class="stat-icon transactions">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Tổng số dư</div>
+                            <div class="stat-value">$1.2B</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 3.4% (tháng trước)
+                            </div>
+                        </div>
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Tài khoản mới</div>
+                            <div class="stat-value">246</div>
+                            <div class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i> 8.9% (tháng trước)
+                            </div>
+                        </div>
+                        <div class="stat-icon accounts">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-row">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Doanh thu theo tháng</h3>
+                        <div>
+                            <button class="btn btn-outline">Năm 2023</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Phân bổ tài khoản</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="accountDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-card">
+                <div class="activity-header">
+                    <h3>Hoạt động gần đây</h3>
+                    <button class="btn btn-outline">Xem tất cả</button>
+                </div>
+                <ul class="activity-list">
+                    <li class="activity-item">
+                        <div class="activity-icon deposit">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Nạp tiền thành công</div>
+                            <div class="activity-info">
+                                <span>Tài khoản: VN00123456</span>
+                                <span>Số tiền: $5,000</span>
+                                <span class="activity-status status-completed">Thành công</span>
+                            </div>
+                        </div>
+                        <div class="activity-time">2 phút trước</div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon withdraw">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Yêu cầu rút tiền</div>
+                            <div class="activity-info">
+                                <span>Khách hàng: Nguyễn Văn A</span>
+                                <span>Số tiền: $1,200</span>
+                                <span class="activity-status status-pending">Chờ duyệt</span>
+                            </div>
+                        </div>
+                        <div class="activity-time">15 phút trước</div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon transfer">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Chuyển khoản liên ngân hàng</div>
+                            <div class="activity-info">
+                                <span>Từ: VN00123456</span>
+                                <span>Đến: VCB98765432</span>
+                                <span class="activity-status status-completed">Thành công</span>
+                            </div>
+                        </div>
+                        <div class="activity-time">1 giờ trước</div>
+                    </li>
+                    
+                    <li class="activity-item">
+                        <div class="activity-icon account">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Tài khoản mới đăng ký</div>
+                            <div class="activity-info">
+                                <span>Khách hàng: Trần Thị B</span>
+                                <span>Loại tài khoản: Premium</span>
+                                <span class="activity-status status-completed">Đã kích hoạt</span>
+                            </div>
+                        </div>
+                        <div class="activity-time">3 giờ trước</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- User Management -->
+            <div class="user-management">
+                <div class="management-header">
+                    <h3>Quản lý khách hàng</h3>
+                    <div>
+                        <button class="btn btn-primary"><i class="fas fa-plus"></i> Thêm khách hàng</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Khách hàng</th>
+                                <th>Loại tài khoản</th>
+                                <th>Số dư</th>
+                                <th>Ngày đăng ký</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-name">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100" class="user-avatar-small" alt="User">
+                                        Jackson
+                                    </div>
+                                </td>
+                                <td>Premium</td>
+                                <td>$42,568</td>
+                                <td>15/06/2022</td>
+                                <td><span class="user-status status-active">Đang hoạt động</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <div class="action-btn view"><i class="fas fa-eye"></i></div>
+                                        <div class="action-btn edit"><i class="fas fa-edit"></i></div>
+                                        <div class="action-btn delete"><i class="fas fa-trash"></i></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-name">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100" class="user-avatar-small" alt="User">
+                                        Chambers
+                                    </div>
+                                </td>
+                                <td>Standard</td>
+                                <td>$8,425</td>
+                                <td>22/07/2023</td>
+                                <td><span class="user-status status-active">Đang hoạt động</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <div class="action-btn view"><i class="fas fa-eye"></i></div>
+                                        <div class="action-btn edit"><i class="fas fa-edit"></i></div>
+                                        <div class="action-btn delete"><i class="fas fa-trash"></i></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-name">
+                                        <img src="https://tse4.mm.bing.net/th?id=OIP.fD95bEoLykm2y1FXmklo5wHaLH&pid=Api&P=0&h=220" class="user-avatar-small" alt="User">
+                                        Lee-Hughes
+                                    </div>
+                                </td>
+                                <td>Gold</td>
+                                <td>$125,780</td>
+                                <td>03/01/2021</td>
+                                <td><span class="user-status status-inactive">Tạm khóa</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <div class="action-btn view"><i class="fas fa-eye"></i></div>
+                                        <div class="action-btn edit"><i class="fas fa-edit"></i></div>
+                                        <div class="action-btn delete"><i class="fas fa-trash"></i></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-name">
+                                        <img src="https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?q=80&w=100" class="user-avatar-small" alt="User">
+                                        Powell Ltd
+                                    </div>
+                                </td>
+                                <td>Premium</td>
+                                <td>$56,342</td>
+                                <td>18/11/2022</td>
+                                <td><span class="user-status status-active">Đang hoạt động</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <div class="action-btn view"><i class="fas fa-eye"></i></div>
+                                        <div class="action-btn edit"><i class="fas fa-edit"></i></div>
+                                        <div class="action-btn delete"><i class="fas fa-trash"></i></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-name">
+                                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=100" class="user-avatar-small" alt="User">
+                                        Reese
+                                    </div>
+                                </td>
+                                <td>Standard</td>
+                                <td>$3,245</td>
+                                <td>05/09/2023</td>
+                                <td><span class="user-status status-active">Đang hoạt động</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <div class="action-btn view"><i class="fas fa-eye"></i></div>
+                                        <div class="action-btn edit"><i class="fas fa-edit"></i></div>
+                                        <div class="action-btn delete"><i class="fas fa-trash"></i></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <p>FLASH BROTHER BANK cam kết mang đến những dịch vụ ngân hàng hiện đại, an toàn và tiện lợi nhất cho khách hàng.</p>
+                    <p><i class="fas fa-phone"></i> 0347 255 ***</p>
+                    <p><i class="fas fa-envelope"></i> admin@flashbrotherbank.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Song Cong, Thai Nguyen, VietNam</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quản trị hệ thống</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý người dùng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý giao dịch</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Báo cáo tài chính</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý khoản vay</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cài đặt hệ thống</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Hỗ trợ quản trị</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Tài liệu kỹ thuật</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Bảo mật hệ thống</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cập nhật phần mềm</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liên hệ hỗ trợ</h3>
+                    <p>Liên hệ với bộ phận kỹ thuật để được hỗ trợ 24/7</p>
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 15px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-github"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 FLASH BROTHER BANK | <a href="#" style="color: var(--secondary);">Chính sách bảo mật</a> | <a href="#" style="color: var(--secondary);">Điều khoản dịch vụ</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7'],
+                    datasets: [{
+                        label: 'Doanh thu (USD)',
+                        data: [850000, 920000, 780000, 1100000, 1050000, 1250000, 1200000],
+                        borderColor: '#1a3c6c',
+                        backgroundColor: 'rgba(26, 60, 108, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#1a3c6c',
+                        pointRadius: 5,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Account Distribution Chart
+            const accountCtx = document.getElementById('accountDistributionChart').getContext('2d');
+            const accountChart = new Chart(accountCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Premium', 'Gold', 'Standard', 'Basic'],
+                    datasets: [{
+                        data: [35, 25, 30, 10],
+                        backgroundColor: [
+                            '#1a3c6c',
+                            '#ff9800',
+                            '#4caf50',
+                            '#f44336'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Menu item activation and navigation
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Get URL from data attribute
+                const url = this.getAttribute('data-url');
+                
+                // Navigate to the URL
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+
+        // Special handling for logout button
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                // Redirect to login page
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Function to navigate to a page
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        // Simple animation for buttons
+        document.querySelectorAll('.btn, .action-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
