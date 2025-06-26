@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hỗ Trợ Khách Hàng - FLASH BROTHER BANK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3c6c;
+            --primary-light: #2d5a9a;
+            --secondary: #ff9800;
+            --success: #4caf50;
+            --danger: #f44336;
+            --warning: #ffc107;
+            --light: #f5f7fa;
+            --dark: #333;
+            --gray: #888;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: var(--dark);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6ebf5 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+        }
+
+        .search-bar i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .user-info .role {
+            font-size: 13px;
+            opacity: 0.8;
+            background: var(--secondary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background: #dc3545;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #3d8b40;
+        }
+
+        /* Admin Dashboard Layout */
+        .admin-dashboard {
+            display: flex;
+            min-height: calc(100vh - 70px);
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px 0;
+            transition: var(--transition);
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h3 {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .menu-item i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: #f8fafc;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h2 {
+            font-size: 26px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .dashboard-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        /* Support Page Styles */
+        .support-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .support-nav {
+            width: 250px;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+
+        .support-nav h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(26, 60, 108, 0.1);
+            color: var(--primary);
+        }
+
+        .nav-item i {
+            width: 24px;
+            text-align: center;
+        }
+
+        .support-content {
+            flex: 1;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .support-section {
+            display: none;
+        }
+
+        .support-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--primary-light);
+            margin: 20px 0 15px;
+        }
+
+        .faq-list {
+            list-style: none;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-question i {
+            color: var(--secondary);
+        }
+
+        .faq-answer {
+            color: var(--gray);
+            padding-left: 30px;
+        }
+
+        .contact-form {
+            max-width: 700px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-light);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 60, 108, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .priority-badges {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .priority-badge {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .priority-badge:hover {
+            transform: translateY(-3px);
+        }
+
+        .priority-badge.low {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+
+        .priority-badge.medium {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+        }
+
+        .priority-badge.high {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--danger);
+        }
+
+        .priority-badge.selected {
+            border-color: currentColor;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+        }
+
+        .priority-badge i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Ticket Status */
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ticket-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+        }
+
+        .ticket-card.open::before {
+            background: var(--warning);
+        }
+
+        .ticket-card.pending::before {
+            background: var(--secondary);
+        }
+
+        .ticket-card.resolved::before {
+            background: var(--success);
+        }
+
+        .ticket-card.closed::before {
+            background: var(--gray);
+        }
+
+        .ticket-id {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .ticket-title {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .ticket-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .ticket-status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-open {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+        }
+
+        .status-pending {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--secondary);
+        }
+
+        .status-resolved {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success);
+        }
+
+        .status-closed {
+            background: rgba(136, 136, 136, 0.1);
+            color: var(--gray);
+        }
+
+        .ticket-description {
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .ticket-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .ticket-btn {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ticket-btn.view {
+            background: rgba(26, 60, 108, 0.1);
+            color: var(--primary);
+            border: none;
+        }
+
+        .ticket-btn.resolve {
+            background: var(--success);
+            color: white;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?q=80&w=1000') center/cover;
+            opacity: 0.05;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .admin-dashboard {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 10px 0;
+            }
+            
+            .sidebar-header {
+                padding: 0 15px 15px;
+            }
+            
+            .menu-item {
+                padding: 10px 15px;
+            }
+            
+            .support-container {
+                flex-direction: column;
+            }
+            
+            .support-nav {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 10px 0;
+                max-width: 100%;
+            }
+            
+            .user-menu {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 20px;
+            }
+            
+            .priority-badges {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="navigateTo('dashboard.html')">
+                    <i class="fas fa-university"></i>
+                    <h1>FLASH <span>BROTHER</span> BANK</h1>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm khách hàng, giao dịch...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="name">Admin</div>
+                        <div class="role">Quản trị viên</div>
+                    </div>
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100" alt="Admin Avatar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-tachometer-alt"></i> Bảng điều khiển</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="menu-item" data-url="index.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Tổng quan</span>
+                </li>
+                <li class="menu-item" data-url="customers.html">
+                    <i class="fas fa-users"></i>
+                    <span>Quản lý khách hàng</span>
+                </li>
+                <li class="menu-item" data-url="transactions.html">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Giao dịch</span>
+                </li>
+                <li class="menu-item" data-url="savings.html">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Tài khoản tiết kiệm</span>
+                </li>
+                <li class="menu-item" data-url="loans.html">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span>Quản lý khoản vay</span>
+                </li>
+                <li class="menu-item" data-url="reports.html">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Báo cáo & Thống kê</span>
+                </li>
+                <li class="menu-item" data-url="settings.html">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt hệ thống</span>
+                </li>
+                <li class="menu-item active" data-url="support.html">
+                    <i class="fas fa-headset"></i>
+                    <span>Hỗ trợ khách hàng</span>
+                </li>
+                <li class="menu-item" data-url="staff.html">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Quản lý nhân viên</span>
+                </li>
+                <li class="menu-item" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content - Hỗ Trợ Khách Hàng -->
+        <div class="main-content">
+            <div class="dashboard-header">
+                <h2>Hỗ Trợ Khách Hàng</h2>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Tạo yêu cầu mới</button>
+                </div>
+            </div>
+
+            <div class="support-container">
+                <!-- Navigation -->
+                <div class="support-nav">
+                    <h3>Danh mục hỗ trợ</h3>
+                    <ul class="nav-list">
+                        <li class="nav-item active" data-target="faq">
+                            <i class="fas fa-question-circle"></i>
+                            <span>Câu hỏi thường gặp</span>
+                        </li>
+                        <li class="nav-item" data-target="contact">
+                            <i class="fas fa-headset"></i>
+                            <span>Liên hệ hỗ trợ</span>
+                        </li>
+                        <li class="nav-item" data-target="tickets">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Yêu cầu hỗ trợ</span>
+                        </li>
+                        <li class="nav-item" data-target="guides">
+                            <i class="fas fa-book"></i>
+                            <span>Hướng dẫn sử dụng</span>
+                        </li>
+                        <li class="nav-item" data-target="resources">
+                            <i class="fas fa-download"></i>
+                            <span>Tài nguyên tải xuống</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Content Sections -->
+                <div class="support-content">
+                    <!-- FAQ Section -->
+                    <div id="faq" class="support-section active">
+                        <h2 class="section-title">Câu Hỏi Thường Gặp</h2>
+                        
+                        <h3 class="section-subtitle"><i class="fas fa-credit-card"></i> Tài khoản & Thẻ</h3>
+                        <ul class="faq-list">
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-question"></i> Làm thế nào để mở tài khoản mới tại FLASH BROTHER BANK?</div>
+                                <div class="faq-answer">
+                                    Bạn có thể mở tài khoản trực tiếp tại chi nhánh gần nhất hoặc đăng ký trực tuyến thông qua website của chúng tôi. Bạn cần chuẩn bị CMND/CCCD và các giấy tờ liên quan.
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-question"></i> Thẻ của tôi bị mất hoặc bị đánh cắp phải làm sao?</div>
+                                <div class="faq-answer">
+                                    Vui lòng gọi ngay đến tổng đài hỗ trợ 24/7: 0347 255 626 để khóa thẻ tạm thời. Sau đó đến chi nhánh gần nhất để làm thủ tục cấp lại thẻ mới.
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-question"></i> Làm sao để kích hoạt thẻ mới nhận được?</div>
+                                <div class="faq-answer">
+                                    Bạn có thể kích hoạt thẻ bằng cách: (1) Gọi đến tổng đài 0347 255 626, (2) Qua ứng dụng di động FB Bank, (3) Tại cây ATM của hệ thống FLASH BROTHER BANK.
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <h3 class="section-subtitle"><i class="fas fa-exchange-alt"></i> Chuyển khoản & Thanh toán</h3>
+                        <ul class="faq-list">
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-question"></i> Thời gian chuyển khoản liên ngân hàng là bao lâu?</div>
+                                <div class="faq-answer">
+                                    Chuyển khoản liên ngân hàng thường được xử lý trong vòng 15-30 phút trong giờ hành chính. Ngoài giờ hành chính, giao dịch sẽ được xử lý vào ngày làm việc tiếp theo.
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-question"></i> Tôi có thể thanh toán hóa đơn qua những kênh nào?</div>
+                                <div class="faq-answer">
+                                    Bạn có thể thanh toán hóa đơn qua: (1) Ứng dụng di động FB Bank, (2) Internet Banking, (3) Cây ATM, (4) Đến trực tiếp chi nhánh gần nhất.
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <h3 class="section-subtitle"><i class="fas fa-hand-holding-usd"></i> Vay vốn & Tín dụng</h3>
+                        <ul class="faq-list">
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-question"></i> Điều kiện để vay tín chấp tại FLASH BROTHER BANK?</div>
+                                <div class="faq-answer">
+                                    Để vay tín chấp, bạn cần: (1) Là công dân Việt Nam từ 20-60 tuổi, (2) Có thu nhập ổn định từ 5 triệu/tháng trở lên, (3) Có lịch sử tín dụng tốt, (4) Hồ sơ đầy đủ theo quy định.
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-question"></i> Tôi có thể trả nợ trước hạn không?</div>
+                                <div class="faq-answer">
+                                    Có, bạn có thể trả nợ trước hạn mà không bị phí phạt. Tuy nhiên, vui lòng thông báo trước với chúng tôi ít nhất 3 ngày làm việc.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Section -->
+                    <div id="contact" class="support-section">
+                        <h2 class="section-title">Liên Hệ Hỗ Trợ</h2>
+                        <p>Vui lòng điền đầy đủ thông tin bên dưới để chúng tôi có thể hỗ trợ bạn tốt nhất.</p>
+                        
+                        <div class="priority-badges">
+                            <div class="priority-badge low" data-priority="low">
+                                <i class="fas fa-info-circle"></i>
+                                <div>Hỏi đáp thông tin</div>
+                                <small>Phản hồi trong 24h</small>
+                            </div>
+                            <div class="priority-badge medium" data-priority="medium">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>Sự cố kỹ thuật</div>
+                                <small>Phản hồi trong 12h</small>
+                            </div>
+                            <div class="priority-badge high" data-priority="high">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>Khẩn cấp</div>
+                                <small>Phản hồi ngay lập tức</small>
+                            </div>
+                        </div>
+                        
+                        <form class="contact-form">
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="fullname">Họ và tên <span style="color: var(--danger);">*</span></label>
+                                        <input type="text" id="fullname" placeholder="Nguyễn Văn A" required>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="phone">Số điện thoại <span style="color: var(--danger);">*</span></label>
+                                        <input type="tel" id="phone" placeholder="0347 255 626" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="email">Email <span style="color: var(--danger);">*</span></label>
+                                        <input type="email" id="email" placeholder="example@email.com" required>
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label for="account">Số tài khoản (nếu có)</label>
+                                        <input type="text" id="account" placeholder="VN00123456">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="category">Danh mục hỗ trợ <span style="color: var(--danger);">*</span></label>
+                                <select id="category" required>
+                                    <option value="">Chọn danh mục</option>
+                                    <option value="account">Tài khoản & Thẻ</option>
+                                    <option value="transfer">Chuyển khoản & Thanh toán</option>
+                                    <option value="loan">Vay vốn & Tín dụng</option>
+                                    <option value="saving">Tài khoản tiết kiệm</option>
+                                    <option value="tech">Sự cố kỹ thuật</option>
+                                    <option value="other">Vấn đề khác</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Tiêu đề <span style="color: var(--danger);">*</span></label>
+                                <input type="text" id="subject" placeholder="Mô tả ngắn gọn vấn đề" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Nội dung chi tiết <span style="color: var(--danger);">*</span></label>
+                                <textarea id="message" placeholder="Mô tả chi tiết vấn đề bạn đang gặp phải..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="attachment">Tệp đính kèm (nếu có)</label>
+                                <input type="file" id="attachment">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" style="width: 200px;">
+                                <i class="fas fa-paper-plane"></i> Gửi yêu cầu
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Tickets Section -->
+                    <div id="tickets" class="support-section">
+                        <h2 class="section-title">Yêu Cầu Hỗ Trợ</h2>
+                        
+                        <div class="ticket-grid">
+                            <div class="ticket-card open">
+                                <div class="ticket-id">#FB-2023-0452</div>
+                                <div class="ticket-title">Không thể đăng nhập Internet Banking</div>
+                                <div class="ticket-meta">
+                                    <div>Nguyễn Văn A</div>
+                                    <div>15/10/2023</div>
+                                </div>
+                                <div class="ticket-status status-open">Đang mở</div>
+                                <div class="ticket-description">
+                                    Tôi không thể đăng nhập vào Internet Banking dù đã nhập đúng thông tin. Hệ thống báo lỗi "Tài khoản không tồn tại".
+                                </div>
+                                <div class="ticket-actions">
+                                    <button class="ticket-btn view">Xem chi tiết</button>
+                                    <button class="ticket-btn resolve">Đánh dấu đã giải quyết</button>
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-card pending">
+                                <div class="ticket-id">#FB-2023-0418</div>
+                                <div class="ticket-title">Thẻ không hoạt động tại ATM</div>
+                                <div class="ticket-meta">
+                                    <div>Trần Thị B</div>
+                                    <div>12/10/2023</div>
+                                </div>
+                                <div class="ticket-status status-pending">Đang xử lý</div>
+                                <div class="ticket-description">
+                                    Thẻ của tôi không thể rút tiền tại cây ATM của ngân hàng khác, dù tài khoản vẫn đủ số dư.
+                                </div>
+                                <div class="ticket-actions">
+                                    <button class="ticket-btn view">Xem chi tiết</button>
+                                    <button class="ticket-btn resolve">Đánh dấu đã giải quyết</button>
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-card resolved">
+                                <div class="ticket-id">#FB-2023-0392</div>
+                                <div class="ticket-title">Chuyển khoản chậm</div>
+                                <div class="ticket-meta">
+                                    <div>Lê Văn C</div>
+                                    <div>08/10/2023</div>
+                                </div>
+                                <div class="ticket-status status-resolved">Đã giải quyết</div>
+                                <div class="ticket-description">
+                                    Chuyển khoản đến ngân hàng khác đã hơn 24 giờ nhưng người nhận chưa nhận được tiền.
+                                </div>
+                                <div class="ticket-actions">
+                                    <button class="ticket-btn view">Xem chi tiết</button>
+                                </div>
+                            </div>
+                            
+                            <div class="ticket-card closed">
+                                <div class="ticket-id">#FB-2023-0376</div>
+                                <div class="ticket-title">Yêu cầu cấp lại token</div>
+                                <div class="ticket-meta">
+                                    <div>Phạm Thị D</div>
+                                    <div>05/10/2023</div>
+                                </div>
+                                <div class="ticket-status status-closed">Đã đóng</div>
+                                <div class="ticket-description">
+                                    Tôi làm mất thiết bị token, cần được cấp lại để sử dụng Internet Banking.
+                                </div>
+                                <div class="ticket-actions">
+                                    <button class="ticket-btn view">Xem chi tiết</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-outline" style="background: var(--primary); color: white; width: 100%;">
+                            <i class="fas fa-history"></i> Xem tất cả yêu cầu hỗ trợ
+                        </button>
+                    </div>
+
+                    <!-- Guides Section -->
+                    <div id="guides" class="support-section">
+                        <h2 class="section-title">Hướng Dẫn Sử Dụng</h2>
+                        <p>Dưới đây là các hướng dẫn chi tiết giúp bạn sử dụng dịch vụ ngân hàng một cách dễ dàng và hiệu quả.</p>
+                        
+                        <h3 class="section-subtitle"><i class="fas fa-mobile-alt"></i> Hướng dẫn sử dụng ứng dụng di động</h3>
+                        <ul class="faq-list">
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-download"></i> Cách tải và cài đặt ứng dụng FB Bank</div>
+                                <div class="faq-answer">
+                                    <p>Bước 1: Truy cập App Store (iOS) hoặc Google Play (Android)</p>
+                                    <p>Bước 2: Tìm kiếm "FB Bank"</p>
+                                    <p>Bước 3: Tải và cài đặt ứng dụng</p>
+                                    <p>Bước 4: Mở ứng dụng và làm theo hướng dẫn đăng ký</p>
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-unlock"></i> Cách đăng nhập lần đầu</div>
+                                <div class="faq-answer">
+                                    <p>Sau khi cài đặt, bạn cần đăng ký tài khoản:</p>
+                                    <p>1. Nhập số điện thoại đã đăng ký với ngân hàng</p>
+                                    <p>2. Nhập mã OTP được gửi về SMS</p>
+                                    <p>3. Tạo mật khẩu mới</p>
+                                    <p>4. Thiết lập phương thức bảo mật (vân tay/khuôn mặt)</p>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <h3 class="section-subtitle"><i class="fas fa-laptop"></i> Hướng dẫn sử dụng Internet Banking</h3>
+                        <ul class="faq-list">
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-user-plus"></i> Đăng ký Internet Banking lần đầu</div>
+                                <div class="faq-answer">
+                                    <p>1. Truy cập website: internetbanking.flashbrotherbank.com</p>
+                                    <p>2. Chọn "Đăng ký lần đầu"</p>
+                                    <p>3. Nhập số tài khoản và CMND/CCCD</p>
+                                    <p>4. Xác thực qua số điện thoại đăng ký</p>
+                                    <p>5. Thiết lập tên đăng nhập và mật khẩu</p>
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question"><i class="fas fa-exchange-alt"></i> Hướng dẫn chuyển tiền</div>
+                                <div class="faq-answer">
+                                    <p>1. Đăng nhập Internet Banking</p>
+                                    <p>2. Chọn "Chuyển tiền"</p>
+                                    <p>3. Chọn loại chuyển tiền (nội bộ/liên ngân hàng)</p>
+                                    <p>4. Nhập thông tin người nhận và số tiền</p>
+                                    <p>5. Xác thực giao dịch bằng OTP/token</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Resources Section -->
+                    <div id="resources" class="support-section">
+                        <h2 class="section-title">Tài Nguyên Tải Xuống</h2>
+                        <p>Dưới đây là các tài liệu hướng dẫn và biểu mẫu có thể tải về để sử dụng.</p>
+                        
+                        <h3 class="section-subtitle"><i class="fas fa-file-pdf"></i> Biểu mẫu dịch vụ</h3>
+                        <ul class="faq-list">
+                            <li class="faq-item">
+                                <div class="faq-question">
+                                    <i class="fas fa-download"></i> Biểu mẫu mở tài khoản thanh toán
+                                    <button class="btn btn-primary" style="float: right; padding: 5px 15px; font-size: 14px;">
+                                        Tải xuống
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question">
+                                    <i class="fas fa-download"></i> Biểu mẫu đăng ký dịch vụ Internet Banking
+                                    <button class="btn btn-primary" style="float: right; padding: 5px 15px; font-size: 14px;">
+                                        Tải xuống
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question">
+                                    <i class="fas fa-download"></i> Biểu mẫu đăng ký vay tín chấp
+                                    <button class="btn btn-primary" style="float: right; padding: 5px 15px; font-size: 14px;">
+                                        Tải xuống
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <h3 class="section-subtitle"><i class="fas fa-book"></i> Tài liệu hướng dẫn</h3>
+                        <ul class="faq-list">
+                            <li class="faq-item">
+                                <div class="faq-question">
+                                    <i class="fas fa-download"></i> Hướng dẫn sử dụng ứng dụng di động FB Bank
+                                    <button class="btn btn-primary" style="float: right; padding: 5px 15px; font-size: 14px;">
+                                        Tải xuống
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question">
+                                    <i class="fas fa-download"></i> Hướng dẫn bảo mật tài khoản ngân hàng
+                                    <button class="btn btn-primary" style="float: right; padding: 5px 15px; font-size: 14px;">
+                                        Tải xuống
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="faq-item">
+                                <div class="faq-question">
+                                    <i class="fas fa-download"></i> Cẩm nang sử dụng thẻ tín dụng
+                                    <button class="btn btn-primary" style="float: right; padding: 5px 15px; font-size: 14px;">
+                                        Tải xuống
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <p>FLASH BROTHER BANK cam kết mang đến những dịch vụ ngân hàng hiện đại, an toàn và tiện lợi nhất cho khách hàng.</p>
+                    <p><i class="fas fa-phone"></i> 0347 255 626</p>
+                    <p><i class="fas fa-envelope"></i> admin@flashbrotherbank.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Nguyễn Huệ, Quận 1, TP.HCM</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quản trị hệ thống</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý người dùng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý giao dịch</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Báo cáo tài chính</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Quản lý khoản vay</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cài đặt hệ thống</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Hỗ trợ quản trị</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Hướng dẫn sử dụng</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Tài liệu kỹ thuật</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Bảo mật hệ thống</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cập nhật phần mềm</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liên hệ hỗ trợ</h3>
+                    <p>Liên hệ với bộ phận kỹ thuật để được hỗ trợ 24/7</p>
+                    <div class="social-icons" style="display: flex; gap: 15px; margin-top: 15px;">
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-github"></i></a>
+                        <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 FLASH BROTHER BANK | <a href="#" style="color: var(--secondary);">Chính sách bảo mật</a> | <a href="#" style="color: var(--secondary);">Điều khoản dịch vụ</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Chuyển đổi giữa các mục hỗ trợ
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all nav items
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Hide all support sections
+                document.querySelectorAll('.support-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show the selected section
+                const target = this.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Priority badge selection
+        document.querySelectorAll('.priority-badge').forEach(badge => {
+            badge.addEventListener('click', function() {
+                // Remove selected class from all badges
+                document.querySelectorAll('.priority-badge').forEach(b => {
+                    b.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked badge
+                this.classList.add('selected');
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Yêu cầu hỗ trợ của bạn đã được gửi thành công! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.');
+            this.reset();
+            
+            // Reset priority selection
+            document.querySelectorAll('.priority-badge').forEach(b => {
+                b.classList.remove('selected');
+            });
+        });
+
+        // Menu item activation and navigation
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Get URL from data attribute
+                const url = this.getAttribute('data-url');
+                
+                // Navigate to the URL
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+
+        // Special handling for logout button
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                // Redirect to login page
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Function to navigate to a page
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        // Simple animation for buttons
+        document.querySelectorAll('.btn, .action-btn, .priority-badge, .ticket-btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
